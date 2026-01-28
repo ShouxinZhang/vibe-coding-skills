@@ -10,6 +10,8 @@ A knowledge and practice repository for “vibe-style efficient coding,” focus
 
 We provide a repeatable way of working that turns ideas into deliverables quickly, reducing communication cost and accelerating safe experimentation so business goals land reliably.
 
+![1769634356647](image/README/1769634356647.png)
+
 ## Our Core Competitiveness
 
 - **Structured output capability**: We distill ideas into modular knowledge and cases that are easy to reuse and scale across teams.

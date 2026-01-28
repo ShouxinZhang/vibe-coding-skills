@@ -8,6 +8,8 @@ Communicate ideas with others more often—spark new insights through discussion
 
 Put in the hard work to study classic articles, and develop a deep understanding of the principles and ideas behind the technology.
 
+![1769628612417](image/self_cultivation_of_an_excellent_developer/1769628612417.png)
+
 Before doing something big, do thorough research: understand existing solutions and best practices.
 
 Be good at leveraging resources and tools made by others; at the same time, when we build tools, we should consider ease of use for others.

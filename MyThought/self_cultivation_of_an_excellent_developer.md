@@ -4,6 +4,8 @@ Regularly research new tools and new technologies, and get hands-on experience w
 
 Communicate ideas with others more often—spark new insights through discussion and pick up new techniques.
 
+![1769627814204](image/self_cultivation_of_an_excellent_developer/1769627814204.png)
+
 Put in the hard work to study classic articles, and develop a deep understanding of the principles and ideas behind the technology.
 
 Before doing something big, do thorough research: understand existing solutions and best practices.

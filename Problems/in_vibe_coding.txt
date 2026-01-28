@@ -3,3 +3,7 @@ If a user’s entire codebase is generated through "vibe coding," how can reusab
 How can we ensure that LLMs align with human requirements? What should be done if an LLM fails to generate the desired output in a single pass?
 
 How can consistency in frontend design be guaranteed? How do we ensure that the design style and UI layout perfectly match the user's intent?
+
+LLMs sometimes stop to ask the user for input before a task is finished, which is fatal to multithreaded and parallelized development. Is there a way to have an independent agent review interrupted task flows and, based on the context, provide further prompts so that the primary agent can continue working until the task is fully completed?
+
+The code quality produced by LLMs and whether it meets our business requirements often needs to be manually verified, which is inconvenient. Is there a way to make manual verification easier, or to introduce an independent review-agent workflow?

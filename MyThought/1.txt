@@ -9,3 +9,4 @@ Divide and Conquer: For complex requirements, adopt a "divide and conquer" appro
 Pre-execution Alignment: Require the LLM to articulate its implementation plan and logic before writing or executing code to ensure it aligns with the user's intent.
 
 Frontend Componentization and Visual Input: On the frontend, maintain strict component separation to make controlling UI positioning and layout much easier. Furthermore, it is best to provide the LLM with UI sketches so it can generate code based on visual references.
+

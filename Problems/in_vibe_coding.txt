@@ -1,0 +1,5 @@
+If a user’s entire codebase is generated through "vibe coding," how can reusability be guaranteed?
+
+How can we ensure that LLMs align with human requirements? What should be done if an LLM fails to generate the desired output in a single pass?
+
+How can consistency in frontend design be guaranteed? How do we ensure that the design style and UI layout perfectly match the user's intent?

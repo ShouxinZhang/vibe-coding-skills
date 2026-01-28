@@ -17,7 +17,7 @@ We provide a repeatable way of working that turns ideas into deliverables quickl
 - **Cross-scenario transferability**: A unified methodology fits multiple business contexts, lowering learning costs and boosting collaboration.
 - **Example-driven learning experience**: Rich, concrete examples help users learn and understand quickly.
 
-## Repository Structure
+## ![1769632975217](image/README/1769632975217.png)Repository Structure
 
 - BasicKnowledge/: foundational knowledge and references
 - ExamplesStudio/: small, focused examples and experiments

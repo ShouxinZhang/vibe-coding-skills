@@ -1,0 +1,11 @@
+Modularization and Documentation: Code should be as modular as possible. Simultaneously, it is essential to maintain intuitive documentation that outlines the business logic and algorithmic architecture.
+
+Version Control and Snapshots: Establish robust code management practices, ensuring the ability to roll back to specific snapshots at any time to prevent LLM-generated code from spiraling out of control.
+
+Safe Experimentation: Require the LLM to back up the code or perform experiments on a new Git branch before executing any major deletions.
+
+Divide and Conquer: For complex requirements, adopt a "divide and conquer" approach by breaking them down into multiple simpler, manageable tasks.
+
+Pre-execution Alignment: Require the LLM to articulate its implementation plan and logic before writing or executing code to ensure it aligns with the user's intent.
+
+Frontend Componentization and Visual Input: On the frontend, maintain strict component separation to make controlling UI positioning and layout much easier. Furthermore, it is best to provide the LLM with UI sketches so it can generate code based on visual references.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { GameState, CellType, Direction, startLevel, move, parseLevel } from '@/logic/core';
+import { GameState, CellType, Direction, move, parseLevel } from '@/logic/core';
 import { LEVEL_1, LEVEL_2 } from '@/logic/levels';
 import { Undo2, RotateCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';

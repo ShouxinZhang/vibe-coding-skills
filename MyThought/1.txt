@@ -10,3 +10,4 @@ Pre-execution Alignment: Require the LLM to articulate its implementation plan a
 
 Frontend Componentization and Visual Input: On the frontend, maintain strict component separation to make controlling UI positioning and layout much easier. Furthermore, it is best to provide the LLM with UI sketches so it can generate code based on visual references.
 
+Sometimes, thinking on my own just isn’t enough to spark more divergent ideas. When that happens, it helps to ask other people—or even chat with an LLM. Through conversation, I often end up discovering more interesting and valuable thoughts than I would have on my own.

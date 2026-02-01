@@ -4,6 +4,7 @@ This document defines the high-level repository layout and placement rules for n
 
 ## Top-level
 - AGENTS.md: Contributor and agent rules.
+- .gitignore: Git ignore rules for dependencies, builds, and local files.
 - README.md: Repository overview and core value statements.
 - README.zh-CN.md: Chinese repository overview and core value statements.
 - LICENSE: License.

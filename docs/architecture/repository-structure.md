@@ -18,5 +18,7 @@ This document defines the high-level repository layout and placement rules for n
 - **No new code at repository root.**
 - New experiments must be placed in a **leaf module** under the most relevant top-level area.
 - Examples and experiments go under **ExamplesStudio/**.
+- **ExamplesStudio/BrowserAutomation/**: Browser automation examples (userscripts, extensions, etc.).
+- **ExamplesStudio/BrowserAutomation/TampermonkeySidebarMarkdownExporter/**: Export docs sidebar-linked pages into Markdown (ZIP).
 - Architecture and design documents go under **docs/architecture/**.
 - Keep modules isolated; avoid cross-module dependencies unless necessary.

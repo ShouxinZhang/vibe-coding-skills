@@ -1,0 +1,88 @@
+{
+  "sourceRoots": [
+    "src",
+    "sandbox"
+  ],
+  "layers": [
+    {
+      "name": "ui",
+      "patterns": [
+        "src/ui/**/*.py",
+        "src/ui/*.py"
+      ],
+      "allowImportLayers": [
+        "application",
+        "domain",
+        "shared"
+      ]
+    },
+    {
+      "name": "application",
+      "patterns": [
+        "src/main.py",
+        "src/services/**/*.py",
+        "src/services/*.py"
+      ],
+      "allowImportLayers": [
+        "domain",
+        "infra",
+        "shared"
+      ]
+    },
+    {
+      "name": "infra",
+      "patterns": [
+        "src/db.py",
+        "src/llm.py"
+      ],
+      "allowImportLayers": [
+        "domain",
+        "shared"
+      ]
+    },
+    {
+      "name": "domain",
+      "patterns": [
+        "src/config.py",
+        "src/domain/**/*.py",
+        "src/domain/*.py"
+      ],
+      "allowImportLayers": [
+        "shared"
+      ]
+    },
+    {
+      "name": "shared",
+      "patterns": [
+        "src/**/*.py",
+        "sandbox/**/*.py"
+      ],
+      "allowImportLayers": [
+        "shared",
+        "domain",
+        "infra",
+        "application",
+        "ui"
+      ]
+    }
+  ],
+  "forbiddenImports": [
+    {
+      "fromPatterns": [
+        "src/ui/**/*.py",
+        "src/ui/*.py"
+      ],
+      "forbiddenModulePrefixes": [
+        "db",
+        "llm",
+        "src.db",
+        "src.llm"
+      ],
+      "reason": "UI 层不应直接依赖基础设施实现"
+    }
+  ],
+  "redundancy": {
+    "minFunctionLines": 6,
+    "ignorePrivate": false
+  }
+}

@@ -11,3 +11,5 @@ Pre-execution Alignment: Require the LLM to articulate its implementation plan a
 Frontend Componentization and Visual Input: On the frontend, maintain strict component separation to make controlling UI positioning and layout much easier. Furthermore, it is best to provide the LLM with UI sketches so it can generate code based on visual references.
 
 Sometimes, thinking on my own just isn’t enough to spark more divergent ideas. When that happens, it helps to ask other people—or even chat with an LLM. Through conversation, I often end up discovering more interesting and valuable thoughts than I would have on my own.
+
+迈入2026年, meta和auto的概念渐渐在我的脑海里变得清晰起来。Meta是指对事物的抽象和总结，而auto则是指自动化和智能化。过去我学习数学，学习分析学，代数学，方程，计算，这些可以笼统地归纳于meta与auto的范畴。人通过学习数学，掌握了抽象思维和逻辑推理的能力，这就是meta。而通过计算机的自动化处理，我们可以实现智能化的功能，这就是auto。今后，从虚拟的思维和计算机软件，如果进一步结合强硬的物理世界的自动化设备，是路线图上的一个新的激动人心的发展方向。

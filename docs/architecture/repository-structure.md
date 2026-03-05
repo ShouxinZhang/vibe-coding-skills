@@ -8,7 +8,114 @@ This document defines the high-level repository layout and placement rules for n
 - README.md: Repository overview and core value statements.
 - README.zh-CN.md: Chinese repository overview and core value statements.
 - LICENSE: License.
+- .agents/skills/: Agent 可调用的技能目录。
+  - basic-knowledge-writing/SKILL.md: BasicKnowledge 写作技能——模块结构、命名规范、写作风格、语言约定与创建流程。
 - BasicKnowledge/: Foundational notes and references.
+  - agent_system/: "Agent System" 系列文章，研究多智能体协作、博弈与能力演进。
+    - introduction.md: 引言，多智能体系统的定义、价值与学习路径。
+    - agent_evolution/: 子模块「Agent Evolution」，聚焦 Agent 能力自我增强机制。
+      - introduction.md: 引言，能力演进框架与四个核心主题。
+      - context_learning.md: 上下文学习（In-Context Learning）——通过上下文快速适配新任务。
+      - continual_learning.md: 持续学习（Continual Learning）——跨任务增量学习与抗遗忘。
+      - subagent_creation.md: 创造 Subagents——动态拆解复杂任务并行执行。
+      - bootstrapping.md: 自举提升（Bootstrapping）——基于反馈与反思的闭环优化。
+    - memory/: 子模块「Memory」，聚焦 Agent 记忆系统与记忆治理。
+      - introduction.md: 引言，记忆系统定位、演进阶段与学习路线。
+      - cache_and_short_term.md: 即时层记忆——缓存与短期记忆的职责、策略与落地建议。
+      - long_term_and_rag.md: 长期记忆与检索增强（RAG）的最小闭环与风险控制。
+      - mechanical_memory.md: 机械记忆——todo/plan/draft 的状态管理与恢复机制。
+      - memory_agents.md: 记录者与监控者 Agent 的职责边界、事件协议与冲突处理。
+      - personas.md: 基于记忆切片的人格策略、收益与风险。
+    - practice/: 实践子模块，多场景 Agent 系统设计。
+      - introduction.md: 实践导览与场景化阅读入口。
+  - data_tech.md: 数据科学概论——记录人类存在轨迹的挑战、工具现状与未来方向。
+  - software_engineering/: "软件工程" 系列文章，介绍现代软件工程生态的基础常识。
+    - introduction.md: 引言，软件工程全景概述、历史脉络演进与推荐学习路线。
+    - ecosystem.md: 软件工程生态——技术栈选型、版本控制（Git）、包管理、CI/CD 流水线、容器化（Docker）。
+    - frontend_and_backend.md: 前后端分工——基础三件套、主流框架对比、架构模式（MPA/SPA/SSR/SSG/BFF）、协作机制（CORS/JWT）。
+    - api.md: API 设计范式——REST 六约束、GraphQL、gRPC 四种通信模式、WebSocket/SSE、认证限流最佳实践。
+    - cloud_services.md: 云服务基础——IaaS/PaaS/SaaS 三层模型、主流云厂商对比、核心云服务（计算/存储/数据库）、云原生理念（十二因素/IaC/可观测性）。
+  - llm/: "LLM" 系列文章，深度解析大语言模型的原理、架构与工程实践。
+    - introduction.md: 引言，LLM 概述、发展脉络、规模定律、涌现能力、核心能力与局限性。
+    - transformer.md: Transformer 架构深度解析，含自注意力、多头注意力、FFN、KV Cache 等。
+    - pretraining_finetuning.md: 预训练范式（CLM/MLM）、数据工程、分词（BPE）、全量微调、PEFT（LoRA/QLoRA/Prefix Tuning）、指令微调、RLHF/DPO。
+    - engineering.md: 模型量化（GPTQ/AWQ）、推理框架（vLLM/PagedAttention）、分布式训练（DDP/ZeRO）、长上下文扩展（RoPE/FlashAttention）、评估体系、部署要点（TTFT/TPOT）。
+  - agent_workflow/: "Agent Workflow" 系列文章，探讨无需人类参与的全自动化流水线构建方法。
+    - introduction.md: 引言，Agent Workflow 的定义与核心前提。
+    - workspace_structure.md: 章节「Workspace Structure」，agent 如何感知和维护工作区结构。
+    - gate.md: 章节「Gate（门禁）」，自动化流水线的安全阀设计原则与实践。
+    - hooks.md: 章节「Hooks（钩子）」，流水线生命周期的事件触发器设计与核心 Hook 类型。
+    - modular_work/: 章节「模块化工作」，探讨 agent 在模块化软件工程架构下的工作方式与隔离边界。
+      - anti_pollution_design/: 子模块「防污染设计」，用提示词工程、上下文工程、Workflow 与 Hooks 联动防止工作区架构污染。
+        - introduction.md: 引言，定义工作区污染及四个控制面（Prompt、Context、Workflow、Hooks）的协同关系。
+        - prompt_context_workflow_hooks.md: 落地方法，给出四段式执行闭环、最小 Hook 组合和防污染检查清单。
+      - software_arch/: 子模块「软件工程架构基础」，agent 理解和遵循架构原则所需的核心知识。
+        - introduction.md: 引言，软件工程架构核心概念（分层架构、模块化、接口契约、依赖方向）及 agent 如何把架构原则应用到任务分解与代码修改中。
+        - isolation.md: 隔离机制——进程、文件系统、网络三层隔离的原理、违反后果与 agent 意识，及其与 agent_sandbox 的关系。
+      - agent_sandbox/: 子模块「Agent Sandbox」，聚焦沙箱环境的设计、安全边界与全权限能力模型。
+        - introduction.md: 引言，Sandbox 的本质是"信任合约"——边界之外零权限，边界之内全权限。
+        - security.md: 安全边界——威胁模型（沙箱逃逸/资源耗尽/信息泄露/供应链攻击）、权限最小化（capabilities/seccomp/AppArmor）、审计与可观测性、agent 应有的安全意识。
+        - capabilities.md: 沙箱内全权限操作模型——能力清单、可逆性设计与 Gate 的协作关系。
+    - logging/: 章节「日志记录」，区分两种受众的两套日志体系。
+      - introduction.md: 引言，Human Log 与 Agent Log 的根本区别与设计动机。
+      - human_log/: 给人类审阅的任务日志（独立文件夹，深入展开）。
+        - introduction.md: 定位与概述——人类日志在 Agent Workflow 中的角色。
+        - field_specification.md: 字段规范——每个核心字段的设计理由、边界案例和反模式。
+        - writing_craft.md: 写作技艺——信息密度、因果链还原、决策点标注、好坏对比。
+        - storage_architecture.md: 存储架构——命名规范、索引设计、归档轮转、检索场景。
+        - anti_corruption.md: 防腐烂——退化模式检测与预防手段。
+      - agent_log/: 给 Agent 内部消费的状态日志——深入展开为文件夹结构。
+        - introduction.md: 定位——工作记忆的持久化，与 Human Log 的根本区别。
+        - data_model.md: 三种核心数据结构（workspace_state、task_record、known_issues）的字段设计、存储选型与并发处理。
+        - read_protocol.md: 任务启动时的标准加载流程、上下文压缩策略、选择性加载与差异检测。
+        - write_protocol.md: 事件驱动的实时写入、原子性保证、频率控制与决策记录标准。
+        - lifecycle.md: 数据增长控制、分层清理策略、记忆蒸馏、git 关系与灾难恢复。
+  - agent_system/: "Agent System" 系列文章，聚焦多智能体系统的协作、博弈、通信与系统架构设计。
+    - introduction.md: 引言，多智能体系统定义、与 agent_workflow 的边界、发展历程与学习路线。
+    - foundations.md: 抽象基础——Agent 形式化定义、环境建模（MDP/POMDP/马尔可夫博弈）、通信协议、协调机制、博弈论基础、MARL 概览、LLM Agent 架构。
+    - memory/: 记忆系统子模块，涵盖缓存、短期/长期记忆、机械记忆、RAG、记忆管理 Agent 与人格策略。
+      - introduction.md: 引言，记忆系统在 Agent 架构中的定位与阅读路径。
+      - cache_and_short_term.md: 缓存与短期记忆的分工、生命周期与落地原则。
+      - long_term_and_rag.md: 长期记忆分层、检索增强链路与误召回治理。
+      - mechanical_memory.md: todo/plan/draft 的结构化状态流转与失败恢复。
+      - memory_agents.md: 记录者 Agent 与监控者 Agent 的职责边界与触发机制。
+      - personas.md: 审慎型/探索型/执行型人格的记忆驱动策略。
+    - practice/: 实践子模块，将理论落地到具体场景。
+      - introduction.md: 实践入口——场景导览、分类维度（信息结构/合作关系/通信方式/模态）、阅读建议。
+      - forum.md: 论坛场景——多 Agent 异步讨论、黑板通信模型、观点聚合、回声室效应。
+      - one_on_one.md: 1v1 场景——双 Agent 交互（合作/对抗/协商）、纳什谈判解、信号博弈、LLM-as-Judge。
+      - multi_vs_multi.md: NvN 场景——多团队协作与竞争、拓扑结构、对手建模、QMIX/MAPPO。
+      - doudizhu.md: 斗地主——不完全信息混合博弈、信息集建模、DouZero、CFR 方法论。
+      - multimodal.md: 多模态 Agent 系统——跨模态通信、模态对齐、专家分工/全能/混合架构、具身智能。
+      - coding.md: 编程多 Agent 系统——角色设计、瀑布/迭代/混合架构、MetaGPT/ChatDev/AutoGen 对比。
+  - meta_code/: "Meta Code" 系列文章，探讨 LLM 时代的编程范式转变。
+    - introduction.md: 引言，旧世界的终结与 Meta Code 的定义。
+    - meta_and_auto.md: 章节「Meta 与 Auto」，探讨两种力量的关系与 Meta 债。
+    - math_and_meta/: 子模块「数学与 Meta」，把代数、分析、组合、几何视角转译为可执行的 Meta 工程方法。
+      - introduction.md: 入口——说明模块定位、问题背景、内容索引与阅读路径。
+      - algebra_and_logic.md: 代数与逻辑——公理化建模、可证明性边界与类型化契约。
+      - analysis_and_dynamics.md: 分析学与动力系统——误差传播、稳定性与迭代收敛条件。
+      - combinatorics_and_search.md: 组合学与搜索——组合爆炸控制、搜索策略与覆盖率优化。
+      - geometry_and_topology.md: 几何与拓扑——能力边界、局部图谱与结构连通性治理。
+      - engineering_principles.md: 工程原则——把数学直觉沉淀为团队可执行的制度化实践。
+    - code_topology/: 子模块「Code Topology」，聚焦结构治理与系统可演化性。
+      - introduction.md: 入口——解释为何在 LLM 高迭代时代需要结构治理，并给出阅读路径。
+      - redundancy.md: 冗余设计——何时应增加兜底机制，何时应避免过度冗余。
+      - distillation.md: 需求提炼——从噪音中提取不可妥协约束，降低误解与返工。
+      - dependency_graph.md: 依赖图治理——依赖方向、反模式和轻量规则。
+      - reflections.md: 随想——开发者价值从编码效率向结构判断力迁移。
+    - natural_language_and_code/: 子模块「自然语言与精确代码」，深入探讨自然语言意图与精确代码之间的鸿沟。
+      - introduction.md: 入口——两种表达体系的根本差异，为何这是 LLM 时代最核心的工程鸿沟。
+      - ambiguity.md: 歧义的四种类型（词汇/结构/语用/指代）与 LLM 填补歧义的机制及其失效模式。
+      - specification.md: 规格的幻觉——自然语言无法完备描述程序行为，哥德尔不完备定理的工程投影。
+      - verification.md: 验证困境——当规格本身模糊时如何判断代码正确，三种验证手段的能力边界与实践策略。
+  - deep_learning/: 深度学习知识体系笔记（教科书风格，含 LaTeX 公式）。
+    - introduction.md: 深度学习概述、历史脉络（感知机→AlexNet→当代）、核心思想与局限性。
+    - math_foundations.md: 深度学习数学基础——线性代数、微积分与自动微分、概率与统计。
+    - neural_networks.md: 神经网络基础——神经元模型、激活函数、MLP、损失函数、反向传播、权重初始化。
+    - cnn.md: 卷积神经网络——卷积操作、核心组件（BN/池化/空洞卷积）、经典架构演进（LeNet → ResNet → EfficientNet）、感受野与参数量计算。
+    - rnn_lstm.md: RNN、LSTM、GRU、Seq2Seq 与 Attention 机制详解。
+    - optimization.md: 梯度下降家族、自适应优化器、学习率调度与正则化技术全景。
 - ExamplesStudio/: Small, focused examples and experiments.
 - MyThought/: Personal essays and reflections.
 - Problems/: Problem statements and notes.
@@ -22,3 +129,8 @@ This document defines the high-level repository layout and placement rules for n
 - **ExamplesStudio/BrowserAutomation/TampermonkeySidebarMarkdownExporter/**: Export docs sidebar-linked pages into Markdown (ZIP).
 - Architecture and design documents go under **docs/architecture/**.
 - Keep modules isolated; avoid cross-module dependencies unless necessary.
+
+## agentPromptStudio/meta_skills/
+- `SKILL.md`: 主入口，索引所有 meta 子技能。
+- `skill-authoring-meta/`: 创建通用 SKILL 的方法、结构规范和验收标准。
+- `ci-gate-skill/`: 创建 CI 门禁类 SKILL（pass/fail 信号、阻断流程）的骨架，待补充。

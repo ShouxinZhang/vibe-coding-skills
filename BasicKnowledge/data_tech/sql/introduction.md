@@ -1,164 +1,109 @@
-# SQL：用表格思维理解世界
+# SQL：把现实压缩成可计算的秩序
 
-> SQL 不仅仅是一门查询语言，它是一种**把混乱现实变成有序结构**的思维方式。学会 SQL，意味着你学会了如何定义事物、关系，以及规则。
-
----
-
-## 一、为什么表格是如此强大的抽象
-
-表格，是人类历史上最成功的信息组织形式之一。
-
-账本、名册、课程表、航班时刻表——在计算机出现之前，人类就已经用表格来管理一切需要精确追踪的事物。SQL 不过是把这种直觉形式化了：
-
-- 每一张**表（Table）**，是现实中某类事物的集合
-- 每一**行（Row）**，是该类事物的一个具体实例
-- 每一**列（Column）**，是描述该实例某个维度的属性
-
-```
-表：daily_log（每日记录）
-┌────────────┬───────────┬──────────┬──────────────────────┐
-│  id        │ date      │ mood     │ note                 │
-├────────────┼───────────┼──────────┼──────────────────────┤
-│  1         │ 2026-03-01│ 平静     │ 今天读了两小时书     │
-│  2         │ 2026-03-02│ 焦虑     │ 截止日期临近         │
-│  3         │ 2026-03-03│ 开心     │ 和老朋友吃了顿饭     │
-└────────────┴───────────┴──────────┴──────────────────────┘
-```
-
-这个简单的结构，已经能够回答很多问题：我这个月情绪最好的是哪几天？我焦虑的时候通常在做什么？哪类事件最能让我感到开心？
+> SQL 不只是一门查询语言。它是一种把现实拆成实体、关系、规则与时间序列的方法。语法会被工具替代，但这种结构化思维不会。
 
 ---
 
-## 二、SQL 的核心动词
+## 一、为什么这个模块值得展开
 
-SQL 的语法围绕几个核心动词展开，几乎所有操作都可以用它们组合完成：
+表格是人类最古老也最稳定的信息组织形式之一。账本、名册、排班表、库存表，本质上都在回答同一个问题：**如何把复杂现实压缩成稳定结构。**
 
-### SELECT：我想看什么
+SQL 把这种直觉形式化了：
+
+- 表（Table）定义一类事物
+- 行（Row）记录一个具体实例
+- 列（Column）刻画这个实例的关键属性
+- 约束（Constraint）声明这个世界允许什么、不允许什么
+
+因此，SQL 的价值从来不只是“查数据”。它真正服务的业务结果有三类：
+
+- **记录**：把关键事实留存为可以追溯的结构
+- **分析**：从海量事件里提取规律、风险与机会
+- **协作**：让产品、运营、工程、AI 系统共享同一套事实骨架
+
+---
+
+## 二、模块结构
+
+这一部分已经扩展成 4 个子目录，分别覆盖查询、建模、分析和 AI 时代的新应用：
+
+| 文件 | 内容简介 |
+|------|---------|
+| [query_basics/introduction.md](./query_basics/introduction.md) | 查询基础：如何用 SELECT、聚合、JOIN 和 CTE 向数据提问 |
+| [schema_design/introduction.md](./schema_design/introduction.md) | 表结构设计：如何把业务对象、关系、约束落成稳定 schema |
+| [analytical_sql/introduction.md](./analytical_sql/introduction.md) | 分析型 SQL：如何做趋势、窗口、漏斗、留存等决策分析 |
+| [sql_in_ai_era/introduction.md](./sql_in_ai_era/introduction.md) | SQL 在 LLM、Agent 与个人数据系统中的新角色 |
+| [../sql_and_rag.md](../sql_and_rag.md) | 相关专题：SQL 与 RAG 的边界、协作与取舍 |
+
+---
+
+## 三、SQL 的四层能力
+
+### 1. 查询：我想看什么
 
 ```sql
--- 只看最近 7 天的情绪
 SELECT date, mood
 FROM daily_log
 WHERE date >= CURRENT_DATE - INTERVAL '7 days'
 ORDER BY date DESC;
 ```
 
-### GROUP BY + 聚合：我想统计什么
+这条语句的业务含义并不复杂：从全部记录里，筛出最近 7 天，并按时间倒序给我看。看似只是语法，实际上是在定义观察范围、排序优先级和信息粒度。
+
+### 2. 聚合：我想知道规律是什么
 
 ```sql
--- 各种情绪出现的频率
 SELECT mood, COUNT(*) AS count
 FROM daily_log
 GROUP BY mood
 ORDER BY count DESC;
 ```
 
-| mood | count |
-|------|-------|
-| 平静 | 18    |
-| 开心 | 12    |
-| 焦虑 | 9     |
-| 低落 | 5     |
+当你写 `GROUP BY`，你已经不再关心单个事件，而是在选择一个理解世界的维度。按情绪分组、按周分组、按城市分组，得到的不是同一个故事。
 
-### JOIN：不同事物之间的关系
-
-现实世界的数据很少孤立存在。一条日记记录可能关联着一个地点，一个地点可能关联着一段时期的心境……
+### 3. 建模：我准备如何描述这个世界
 
 ```sql
--- 日记与地点联合查询
-SELECT l.date, l.mood, p.city
-FROM daily_log l
-JOIN places p ON l.place_id = p.id
-WHERE p.city = '上海'
-ORDER BY l.date;
-```
-
-JOIN 是 SQL 最强大也最微妙的能力：它让你把**分开存储**的事物，在查询时临时"拼接"在一起，而不破坏原始数据的结构。
-
----
-
-## 三、数据建模：在写 SQL 之前更重要的事
-
-SQL 写得好不好，很大程度上取决于表结构设计得好不好。建模不是技术问题，而是**认知问题**——你如何理解你要记录的世界？
-
-**Example：个人成长追踪系统**
-
-一个朴素的设计可能把所有东西堆进一张表：
-
-```
-// 糟糕的设计
-growth_log(id, date, type, value, note, tag1, tag2, tag3)
-```
-
-问题很快暴露：tag 数量不够灵活，type 没有约束，value 混合了数字和文字……
-
-更好的设计是把关注点分离：
-
-```sql
--- 事件类型独立维护
-CREATE TABLE event_types (
-    id   INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,        -- 如：读书、运动、冥想
-    unit TEXT                  -- 如：页、分钟、次
-);
-
--- 主记录表
 CREATE TABLE growth_log (
     id          INTEGER PRIMARY KEY,
     recorded_at TIMESTAMP NOT NULL,
-    type_id     INTEGER REFERENCES event_types(id),
+    type_id     INTEGER NOT NULL,
     quantity    NUMERIC,
     note        TEXT
 );
-
--- 标签独立成表（支持多标签）
-CREATE TABLE log_tags (
-    log_id  INTEGER REFERENCES growth_log(id),
-    tag     TEXT,
-    PRIMARY KEY (log_id, tag)
-);
 ```
 
-这种设计更灵活、更可扩展，查询也更清晰。但它的代价是需要 JOIN——这是数据建模中永恒的权衡：**规范化（减少冗余）vs 查询效率（减少关联）**。
+SQL 写得是否优雅，往往取决于写 SQL 之前的表设计是否清晰。实体边界模糊，后续所有查询都会变得别扭；关系建得混乱，后续所有分析都会带着噪声。
+
+### 4. 连接现代 AI：如何把结构化事实喂给智能系统
+
+Text-to-SQL、Agent、个人数据库、混合检索，这些新场景没有让 SQL 过时，反而放大了它的作用。因为 AI 很擅长生成语言，但要想可靠执行任务，仍然需要一层**精确、可审计、可回滚**的事实存储。
 
 ---
 
-## 四、SQL 在 LLM 时代的新生
+## 四、阅读路线
 
-一个有趣的转折发生在2023年之后：
+如果你的目标是尽快把 SQL 用起来，建议按业务目标来读：
 
-**Text-to-SQL** 技术逐渐成熟——你可以用自然语言描述你想要的查询，LLM 自动生成 SQL。
+1. 想会写查询：先读 [query_basics/introduction.md](./query_basics/introduction.md)
+2. 想把表设计对：再读 [schema_design/introduction.md](./schema_design/introduction.md)
+3. 想做分析与报表：继续读 [analytical_sql/introduction.md](./analytical_sql/introduction.md)
+4. 想把 SQL 接到 LLM 或 Agent：最后读 [sql_in_ai_era/introduction.md](./sql_in_ai_era/introduction.md)
 
-```
-你说：帮我看看过去三个月，每周一到周五和周末，我的平均情绪有什么不同
-LLM生成：
-  SELECT
-    CASE WHEN EXTRACT(DOW FROM date) IN (0,6) THEN '周末' ELSE '工作日' END AS day_type,
-    AVG(mood_score) AS avg_mood
-  FROM daily_log
-  WHERE date >= CURRENT_DATE - INTERVAL '90 days'
-  GROUP BY day_type;
-```
-
-这意味着：**你不需要精通 SQL 语法，但你需要理解 SQL 的思维**——知道什么可以被建模成表，知道你想要的聚合与关联是什么，才能准确地告诉 LLM 你真正想要什么。
-
-SQL 作为语法的门槛正在降低，SQL 作为思维方式的价值却在提升。
+如果你的目标是建立“SQL 思维”，顺序则相反地更偏基础设施：**先建模，再查询，再分析，再连接 AI。**
 
 ---
 
-## 五、SQL 的哲学内核
+## 五、一个核心判断
 
-回到最根本的地方：SQL 为什么重要？
+SQL 的门槛确实在下降。今天，LLM 可以替你写出不少查询语句。但真正稀缺的，不再是记住多少语法，而是下面这些判断力：
 
-不是因为它历史悠久，不是因为它在企业中广泛使用。而是因为它代表了一种信念：
+- 哪些事实应该被结构化保存
+- 哪些字段必须被约束
+- 哪个粒度最适合分析问题
+- 哪些问题该交给 SQL，哪些该交给 RAG 或其他系统
 
-**这个世界可以被精确描述。**
-
-当你设计一张表，你是在声明：这类事物有哪些属性是我关心的。当你写一条约束（`NOT NULL`、`UNIQUE`、`FOREIGN KEY`），你是在说：这条规则是我认为这个世界应该遵守的。
-
-数据建模，是一场小规模的世界观声明。
-
-它不会总是完美的。现实比任何表结构都复杂。但正是这种"试图精确地理解世界"的努力，让数据从无序的噪声，变成了可以被信任和推理的骨架。
+换句话说，SQL 作为“语法”的价值在被自动化削弱，SQL 作为“结构化思维”的价值却在继续上升。
 
 ---
 

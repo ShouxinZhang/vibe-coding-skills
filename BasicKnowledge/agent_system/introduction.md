@@ -21,6 +21,7 @@
 | 文件 | 内容简介 |
 |------|---------|
 | [foundations.md](./foundations.md) | 抽象基础——Agent 定义、环境建模、通信协议、协调机制、博弈论基础 |
+| [agent_nature/](./agent_nature/introduction.md) | 子模块——Agent Nature：生命、智能、进化、意识等本体问题 |
 | [agent_evolution/](./agent_evolution/introduction.md) | 子模块——Agent 能力演进：上下文学习、持续学习、创造 Subagents、自举提升 |
 | [memory/](./memory/introduction.md) | 子模块——Agent 记忆系统：缓存、短期/长期记忆、RAG、记忆治理与人格策略 |
 | [practice/](./practice/introduction.md) | 实践子模块——论坛、1v1、NvN、斗地主、多模态、编程等多场景 Agent 系统设计 |
@@ -44,6 +45,8 @@
 ## 建议的学习路线
 
 建议先读 [foundations.md](./foundations.md) 建立抽象概念，理解 Agent 定义、环境模型、通信协议的本质，以及为什么博弈论是多 Agent 系统的数学基础。
+
+如果你更关心 Agent 究竟是什么、为什么它会表现出类似生命与意识的特征，建议接着阅读 [agent_nature/](./agent_nature/introduction.md)。这个子模块回答的是 Agent 的本体问题，而不是具体工程机制。
 
 如果你的目标是构建具备持续记忆能力的系统，建议继续阅读 [memory/](./memory/introduction.md)，重点理解缓存、短期/长期记忆与 RAG 在复杂任务中的协同关系。
 

@@ -14,6 +14,7 @@
 - 设备信息：`docs/device/hardware.md`
 - 代理技能目录：`.agents/skills/`
 - 工作区文档技能：`.agents/skills/workspace-docs/SKILL.md`
+- 工作区文档数据：仓库根目录 `docs/workspace_docs.db`
 - 执行日志技能：`.agents/skills/agent-logs/SKILL.md`
 - 架构守卫技能：`.agents/skills/architecture-guard/SKILL.md`
 - Python 门禁技能：`.agents/skills/python-quality-gate/SKILL.md`
@@ -39,7 +40,9 @@
 	- `.venv/bin/python .agents/skills/architecture-guard/scripts/architecture_guard.py report`
 - 更新工作区文档（修改/新增文件后）：
 	- `.venv/bin/python .agents/skills/workspace-docs/scripts/agent_docs.py set <path> -d "说明" -n "备注"`
-	- `.venv/bin/python .agents/skills/workspace-docs/scripts/agent_docs.py export`
+	- `.venv/bin/python .agents/skills/workspace-docs/scripts/agent_docs.py export`（兼容命令，不再生成 Markdown）
+- 工作区文档落盘位置：
+	- 仓库根目录 `docs/workspace_docs.db`
 
 ## 7. 执行日志门禁（必须执行）
 - 目标：让 AGENTS 在每次任务中自动应用 `agent-logs` 技能，形成可审计闭环。

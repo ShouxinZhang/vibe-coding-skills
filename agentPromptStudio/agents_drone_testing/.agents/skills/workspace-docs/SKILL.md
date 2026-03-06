@@ -7,6 +7,10 @@ description: '管理和读取工作区目录文档。使用该技能可了解文
 
 这个技能提供了一个基于 SQLite 的工具，用于记录和查询项目中各文件与目录的用途，以及 agent 专用备注。
 
+- 模板数据库位于 `workspace-docs/workspace_docs.db`。
+- 实际运行时写入位于仓库根目录的 `docs/workspace_docs.db`。
+- 不再生成 `WORKSPACE_MAP.md`，以避免维护一份重复的 Markdown 总览。
+
 ## When to use this skill?
 1. **Exploring the project**: 当你不清楚某个文件的作用，或想在修改前了解注意事项时使用。
 2. **After modifying/creating files**: 当你新建文件或对现有文件做了重要重构后，你 **MUST** 使用该技能更新文档。
@@ -22,8 +26,8 @@ description: '管理和读取工作区目录文档。使用该技能可了解文
 在创建或修改文件后，记录对应文档信息：
 `python3 .agents/skills/workspace-docs/scripts/agent_docs.py set "src/new_file.py" -d "Short description" -n "Notes for the Agent"`
 
-### 3. Export Global Documentation (Export)
-生成完整的 Markdown 总览（根目录下的 `WORKSPACE_MAP.md`）：
+### 3. Deprecated Export Compatibility (Export)
+`export` 命令仅保留兼容性，不再生成 Markdown 文件：
 `python3 .agents/skills/workspace-docs/scripts/agent_docs.py export`
 
 ### 4. Scan Workspace (Scan)

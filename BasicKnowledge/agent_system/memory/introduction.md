@@ -29,6 +29,7 @@
 | [mechanical_memory.md](./mechanical_memory.md) | 机械记忆：todo、plan、draft 等结构化执行状态 |
 | [memory_agents.md](./memory_agents.md) | 记忆管理 Agent：记录者与监控者的职责边界 |
 | [personas.md](./personas.md) | 人格系统：基于记忆切片的行为策略与风格控制 |
+| [collaborative_memory/](./collaborative_memory/introduction.md) | 协同记忆：多 Agent 场景下的共享知识库、冲突治理与集体学习 |
 
 ---
 
@@ -50,4 +51,5 @@
 2. 再读 [mechanical_memory.md](./mechanical_memory.md)，理解 todo/plan/draft 如何支撑可恢复执行。
 3. 然后读 [long_term_and_rag.md](./long_term_and_rag.md)，掌握经验沉淀与召回机制。
 4. 接着读 [memory_agents.md](./memory_agents.md)，理解记忆治理如何从人工走向自治。
-5. 最后读 [personas.md](./personas.md)，将记忆能力映射到业务风格与组织分工。
+5. 再读 [collaborative_memory/](./collaborative_memory/introduction.md)，理解多 Agent 如何共享、同步并共同沉淀记忆。
+6. 最后读 [personas.md](./personas.md)，将记忆能力映射到业务风格与组织分工。

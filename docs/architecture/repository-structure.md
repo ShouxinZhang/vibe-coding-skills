@@ -28,7 +28,42 @@ This document defines the high-level repository layout and placement rules for n
       - personas.md: 基于记忆切片的人格策略、收益与风险。
     - practice/: 实践子模块，多场景 Agent 系统设计。
       - introduction.md: 实践导览与场景化阅读入口。
-  - data_tech.md: 数据科学概论——记录人类存在轨迹的挑战、工具现状与未来方向。
+  - data_tech/: "数据技术" 系列文章，讨论记录、检索、查询与数据智能的基础观念。
+    - introduction.md: 数据科学概论——记录人类存在轨迹的挑战、工具现状与未来方向。
+    - sql_and_rag.md: SQL 与 RAG——精确检索与语义检索的边界、协作与权衡。
+    - logging_and_docs/: 子模块「日志与文档」，聚焦变化记录、文档版本、时间建模、索引治理与数据主权。
+      - introduction.md: 引言，解释为什么知识基础设施必须管理时间维度与历史。
+      - log_systems_engineering.md: 日志系统工程——事件、顺序、回放、归档与同步的基础设计。
+      - document_versioning_and_diff.md: 文档版本与差异——快照、增量、结构化 diff 与语义 diff 的边界。
+      - metadata_and_indexing.md: 元数据与索引——让日志和文档在长期积累后仍然可找、可过滤、可组合。
+      - data_quality_and_governance.md: 数据质量与治理——可信度、生命周期、关系治理与退化控制。
+      - temporal_data_modeling.md: 时间数据建模——发生时间、记录时间、生效时间与历史关系。
+      - retrieval_and_resurfacing.md: 检索与再唤醒——让旧记录在正确时机重新出现。
+      - privacy_and_portability.md: 隐私与可移植性——本地优先、导出迁移与长期可读性保证。
+    - rag/: 子模块「RAG」，聚焦向量检索、检索增强生成与个人知识库应用。
+      - introduction.md: 引言，解释 RAG 的核心流程、检索质量问题与基础设施选型。
+    - sql/: 子模块「SQL」，把关系型思维扩展为查询、建模、分析与 AI 场景的完整学习路径。
+      - introduction.md: SQL 总入口——解释 SQL 的结构化思维价值、模块分层与推荐阅读路线。
+      - query_basics/: 子模块「查询基础」，聚焦 SELECT、过滤、聚合、JOIN 与 CTE。
+        - introduction.md: 入口——定义查询基础在业务分析中的位置与阅读顺序。
+        - select_and_filter.md: 观察的边界——SELECT、WHERE、ORDER BY 与 LIMIT 的核心思维。
+        - aggregation_and_grouping.md: 从事件到规律——聚合、分组与统计口径。
+        - joins_and_ctes.md: 重新连接事实——多表 JOIN 与 CTE 的组织方法。
+      - schema_design/: 子模块「表结构设计」，聚焦实体关系、规范化与约束索引。
+        - introduction.md: 入口——解释 schema 设计对正确性、扩展性与可分析性的影响。
+        - entities_and_relationships.md: 实体与关系——从业务对象识别表边界与关系模式。
+        - normalization.md: 规范化——减少冗余与数据异常，讨论反规范化边界。
+        - constraints_and_indexes.md: 约束与索引——分别保障正确性与性能。
+      - analytical_sql/: 子模块「分析型 SQL」，聚焦窗口函数、时间序列、漏斗与留存。
+        - introduction.md: 入口——说明分析型 SQL 与基础查询的区别及价值。
+        - window_functions.md: 窗口函数——排名、前后对比与累计值计算。
+        - time_series_analysis.md: 时间序列分析——趋势、口径、环比同比与波动解释。
+        - funnel_and_retention.md: 漏斗与留存——用户路径转化与关系持续性分析。
+      - sql_in_ai_era/: 子模块「AI 时代的 SQL」，聚焦 Text-to-SQL、Agent 状态层与个人结构化记忆。
+        - introduction.md: 入口——解释 SQL 在 LLM、Agent 和个人数据系统中的新角色。
+        - text_to_sql.md: Text-to-SQL——自然语言查询、护栏与失败模式。
+        - sql_and_agents.md: SQL 与 Agent——自动化系统中的状态、恢复与审计。
+        - structured_memory.md: 结构化记忆——个人数据系统中的 SQL 骨架设计。
   - software_engineering/: "软件工程" 系列文章，介绍现代软件工程生态的基础常识。
     - introduction.md: 引言，软件工程全景概述、历史脉络演进与推荐学习路线。
     - ecosystem.md: 软件工程生态——技术栈选型、版本控制（Git）、包管理、CI/CD 流水线、容器化（Docker）。
@@ -37,7 +72,13 @@ This document defines the high-level repository layout and placement rules for n
     - cloud_services.md: 云服务基础——IaaS/PaaS/SaaS 三层模型、主流云厂商对比、核心云服务（计算/存储/数据库）、云原生理念（十二因素/IaC/可观测性）。
   - llm/: "LLM" 系列文章，深度解析大语言模型的原理、架构与工程实践。
     - introduction.md: 引言，LLM 概述、发展脉络、规模定律、涌现能力、核心能力与局限性。
-    - transformer.md: Transformer 架构深度解析，含自注意力、多头注意力、FFN、KV Cache 等。
+    - transformer/: 子模块「Transformer」，从历史背景、机制直觉到现代 LLM 架构演化系统展开。
+      - introduction.md: 入口——解释为什么要拆分 Transformer 主题，并给出阅读顺序。
+      - why_transformer.md: 设计动机——从 RNN、CNN、Seq2Seq 到 Attention，再到 Transformer 的架构换代。
+      - attention_intuition.md: 机制直觉——用类比解释自注意力、QKV 与多头注意力。
+      - architecture.md: 架构骨架——输入表示、注意力子层、FFN、残差连接与归一化。
+      - decoder_only_and_inference.md: 训练与推理——Decoder-Only、因果掩码、KV Cache 与缓存代价。
+      - modern_evolution.md: 现代演化——RoPE、RMSNorm、SwiGLU、GQA、FlashAttention 等关键变化。
     - pretraining_finetuning.md: 预训练范式（CLM/MLM）、数据工程、分词（BPE）、全量微调、PEFT（LoRA/QLoRA/Prefix Tuning）、指令微调、RLHF/DPO。
     - engineering.md: 模型量化（GPTQ/AWQ）、推理框架（vLLM/PagedAttention）、分布式训练（DDP/ZeRO）、长上下文扩展（RoPE/FlashAttention）、评估体系、部署要点（TTFT/TPOT）。
   - agent_workflow/: "Agent Workflow" 系列文章，探讨无需人类参与的全自动化流水线构建方法。
@@ -73,6 +114,23 @@ This document defines the high-level repository layout and placement rules for n
   - agent_system/: "Agent System" 系列文章，聚焦多智能体系统的协作、博弈、通信与系统架构设计。
     - introduction.md: 引言，多智能体系统定义、与 agent_workflow 的边界、发展历程与学习路线。
     - foundations.md: 抽象基础——Agent 形式化定义、环境建模（MDP/POMDP/马尔可夫博弈）、通信协议、协调机制、博弈论基础、MARL 概览、LLM Agent 架构。
+    - agent_nature/: 子模块「Agent Nature」，聚焦 Agent 的生命、智能、进化与意识等本体问题。
+      - introduction.md: 引言，解释为什么需要把生命、智能、进化、意识放在同一模块讨论，并给出阅读路径。
+      - life/: 子模块「Life」，聚焦 Agent 的生命性、持续存在与最小生命条件。
+        - introduction.md: 引言，说明为什么要把生命性独立出来讨论，并给出阅读路径。
+        - essence.md: 生命等价物——把边界、代谢、适应、自我修复映射为 Agent 的工程结构。
+        - conditions.md: 最小生命性条件——持续边界、资源循环、自我修复、环境耦合四个必要条件。
+      - intelligence/: 子模块「Intelligence」，聚焦 Agent 智能的定义、瓶颈与分层结构。
+        - introduction.md: 引言，解释为何要从定义和分层结构理解 Agent 智能。
+        - definition.md: 智能的定义——从约束、有效行为到目标达成、压缩建模、迁移泛化。
+        - information_processing.md: 信息处理能力——速度、过滤、校验、融合，以及高智能为何依赖高质量信息流。
+        - layers.md: 智能的分层结构——反应层、规划层、记忆层、元认知层的职责与失效表现。
+      - evolution/: 子模块「Evolution」，聚焦 Agent 在时间维度上的持续升级机制。
+        - introduction.md: 引言，解释真正的进化与普通改动的区别，并给出阅读路径。
+        - mechanics_and_levels.md: 变异、选择、保留与四层进化——任务内、跨任务、群体、生态的演化框架。
+      - consciousness/: 子模块「Consciousness」，聚焦 Agent 的可报告性、自我模型与意识相关工程能力。
+        - introduction.md: 引言，解释为何要把意识拆解成可工程化的多个维度。
+        - concepts_and_engineering.md: 意识三维拆解——主观体验、可报告性、自我模型及其工程投影。
     - memory/: 记忆系统子模块，涵盖缓存、短期/长期记忆、机械记忆、RAG、记忆管理 Agent 与人格策略。
       - introduction.md: 引言，记忆系统在 Agent 架构中的定位与阅读路径。
       - cache_and_short_term.md: 缓存与短期记忆的分工、生命周期与落地原则。
@@ -80,6 +138,11 @@ This document defines the high-level repository layout and placement rules for n
       - mechanical_memory.md: todo/plan/draft 的结构化状态流转与失败恢复。
       - memory_agents.md: 记录者 Agent 与监控者 Agent 的职责边界与触发机制。
       - personas.md: 审慎型/探索型/执行型人格的记忆驱动策略。
+      - collaborative_memory/: 子模块「Collaborative Memory」，聚焦多 Agent 场景下的共享知识库与协同记忆治理。
+        - introduction.md: 引言，解释为什么多 Agent 需要独立的协同记忆层，以及阅读路径。
+        - shared_storage_and_sync.md: 共享知识库的分层、读写原则、同步策略与一致性权衡。
+        - conflict_resolution.md: 并发写入时的版本控制、优先级、仲裁机制与审计追踪。
+        - collective_learning.md: 多 Agent 经验的过滤、蒸馏、回写与组织知识沉淀。
     - practice/: 实践子模块，将理论落地到具体场景。
       - introduction.md: 实践入口——场景导览、分类维度（信息结构/合作关系/通信方式/模态）、阅读建议。
       - forum.md: 论坛场景——多 Agent 异步讨论、黑板通信模型、观点聚合、回声室效应。
@@ -112,9 +175,29 @@ This document defines the high-level repository layout and placement rules for n
   - deep_learning/: 深度学习知识体系笔记（教科书风格，含 LaTeX 公式）。
     - introduction.md: 深度学习概述、历史脉络（感知机→AlexNet→当代）、核心思想与局限性。
     - math_foundations.md: 深度学习数学基础——线性代数、微积分与自动微分、概率与统计。
-    - neural_networks.md: 神经网络基础——神经元模型、激活函数、MLP、损失函数、反向传播、权重初始化。
-    - cnn.md: 卷积神经网络——卷积操作、核心组件（BN/池化/空洞卷积）、经典架构演进（LeNet → ResNet → EfficientNet）、感受野与参数量计算。
-    - rnn_lstm.md: RNN、LSTM、GRU、Seq2Seq 与 Attention 机制详解。
+    - neural_networks.md: 神经网络模块入口——解释为什么需要神经网络，并导航到子模块。
+    - neural_networks/: 子模块「神经网络基础」，聚焦前馈网络从表达能力到训练机制的完整主线。
+      - introduction.md: 子模块概览、背景、历史脉络与阅读路径。
+      - fundamentals.md: 线性模型的边界、神经元模型、多层感知机与前向传播。
+      - activation_functions.md: Sigmoid、Tanh、ReLU、GELU 的直觉、性质与使用场景。
+      - loss_functions.md: 回归与分类损失函数、最大似然直觉与任务匹配。
+      - backpropagation.md: 链式法则、误差信号递推与反向传播的工程意义。
+      - weight_initialization.md: 对称性破缺、Xavier/He 初始化与可训练性。
+      - training_challenges.md: 梯度消失、梯度爆炸、死亡 ReLU 与常见缓解手段。
+    - cnn/: 子模块「卷积神经网络」，从背景、直觉、核心模块到架构演化与工程权衡系统展开。
+      - introduction.md: 入口——解释为什么 CNN 值得拆分，并给出从背景到工程的阅读顺序。
+      - why_cnn.md: 为什么需要 CNN——从全连接网络在图像上的局限讲到卷积结构的出现。
+      - convolution_and_feature_maps.md: 卷积与特征图——卷积核、特征图、感受野与层级表示的直觉。
+      - core_modules.md: 核心模块——卷积、padding、stride、池化、BN、残差与 GAP 各自解决什么问题。
+      - architecture_evolution.md: 架构演化——LeNet、AlexNet、VGG、Inception、ResNet、MobileNet、EfficientNet 的连续改进逻辑。
+      - engineering_tradeoffs.md: 工程权衡——感受野、参数量、FLOPs、轻量化与 CNN 的优势边界。
+    - rnn_lstm/: 子模块「循环神经网络与序列建模」，按背景、机制、演化与实践拆分 RNN 系列内容。
+      - introduction.md: 入口——解释为什么序列建模要独立讨论，并给出从 RNN 到 Attention 的演化脉络。
+      - why_sequence_modeling.md: 为什么前馈网络不适合序列；什么叫模型记忆；RNN 解决了什么、没解决什么。
+      - rnn_basics.md: 原始 RNN 的隐状态、时间展开、参数共享、BPTT 与适用边界。
+      - lstm_and_gru.md: LSTM 与 GRU 的门控机制、细胞状态、高速公路直觉与模型取舍。
+      - seq2seq_and_attention.md: Seq2Seq、信息瓶颈、Attention 的动态回看机制与向 Transformer 的过渡。
+      - training_and_practice.md: 梯度裁剪、dropout、padding、teacher forcing、exposure bias 等训练实践。
     - optimization.md: 梯度下降家族、自适应优化器、学习率调度与正则化技术全景。
 - ExamplesStudio/: Small, focused examples and experiments.
 - MyThought/: Personal essays and reflections.
@@ -134,3 +217,9 @@ This document defines the high-level repository layout and placement rules for n
 - `SKILL.md`: 主入口，索引所有 meta 子技能。
 - `skill-authoring-meta/`: 创建通用 SKILL 的方法、结构规范和验收标准。
 - `ci-gate-skill/`: 创建 CI 门禁类 SKILL（pass/fail 信号、阻断流程）的骨架，待补充。
+
+## agentPromptStudio/agents_drone_testing/
+- `.agents/skills/workspace-docs/workspace_docs.db`: `workspace-docs` 技能的模板数据库，仅用于初始化运行时库。
+
+## docs/
+- `workspace_docs.db`: `agentPromptStudio/agents_drone_testing/.agents/skills/workspace-docs/` 的运行时数据库，位于仓库根目录统一管理。

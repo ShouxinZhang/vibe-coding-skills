@@ -9,9 +9,9 @@
 | 文件 | 内容简介 |
 |------|---------|
 | [math_foundations.md](./math_foundations.md) | 线性代数、微积分、概率统计——深度学习的数学基石 |
-| [neural_networks.md](./neural_networks.md) | 前馈神经网络、激活函数、反向传播算法 |
-| [cnn.md](./cnn.md) | 卷积神经网络——图像识别的核心架构 |
-| [rnn_lstm.md](./rnn_lstm.md) | 循环神经网络与长短期记忆网络——序列建模 |
+| [neural_networks.md](./neural_networks.md) | 神经网络模块入口——从线性模型的天花板讲到训练稳定性 |
+| [cnn/introduction.md](./cnn/introduction.md) | 卷积神经网络子模块——从背景、直觉到架构演化与工程权衡 |
+| [rnn_lstm/introduction.md](./rnn_lstm/introduction.md) | 循环神经网络与序列建模——从 RNN 到 Attention 的演化脉络 |
 | [optimization.md](./optimization.md) | 优化算法：SGD、Adam、学习率调度与正则化 |
 
 ---
@@ -133,8 +133,8 @@ $$x_{\text{adv}} = x + \epsilon \cdot \text{sign}\left(\nabla_x L(\theta, x, y)\
 理解深度学习需要以下基础：
 
 1. **数学基础**（见 [math_foundations.md](./math_foundations.md)）：线性代数、微积分、概率论；
-2. **神经网络基础**（见 [neural_networks.md](./neural_networks.md)）：前向传播、激活函数、反向传播；
-3. **核心架构**（见 [cnn.md](./cnn.md) 与 [rnn_lstm.md](./rnn_lstm.md)）：CNN 用于视觉，RNN/LSTM 用于序列；
+2. **神经网络基础**（见 [neural_networks.md](./neural_networks.md)）：先建立背景与直觉，再进入前向传播、激活函数、反向传播；
+3. **核心架构**（见 [cnn/introduction.md](./cnn/introduction.md) 与 [rnn_lstm/introduction.md](./rnn_lstm/introduction.md)）：CNN 用于视觉，RNN/LSTM 用于序列；
 4. **优化与训练技巧**（见 [optimization.md](./optimization.md)）：Adam、学习率调度、正则化策略。
 
 ---

@@ -1,72 +1,59 @@
-# 日志与文档：给知识基础设施补上时间维度
+# 日志与文档：让 Agent 能持续运行，也让人能低成本接管
 
-> SQL 擅长回答“现在有什么”，RAG 擅长回答“哪些内容相关”，而日志与版本系统回答的是另一个更底层的问题：这些事实与内容是如何一步步变成今天这个样子的。
+> 在 2026 年，日志与文档不再只是“留档工具”。它们开始承担两项更直接的业务职责：支撑 Agent 长期自主运行，以及让人类在必要时快速看懂、快速介入、快速接管。
 
 ---
 
-## 一、为什么这个模块值得展开
+## 一、为什么这个模块需要重构
 
-在数据技术里，最容易被低估的不是存储容量，也不是检索速度，而是**变化本身**。
+传统的数据基础设施会回答这些问题：
 
-一份文档今天是正确的，明天可能已经过时；一张表上午有 100 条记录，晚上可能变成 103 条；一条制度上周有效，这周可能被新的规则替代。系统如果只能保存“当前状态”，却无法回答“何时变化、为何变化、变化影响了谁”，它就仍然只是存储系统，而不是成熟的知识基础设施。
+- 某份文档怎么保存历史
+- 某条记录何时发生变化
+- 某个版本和上一个版本差在哪里
 
-因此，这个模块讨论三件事：
+这些问题仍然重要，但已经不够了。
 
-- **日志系统**：如何把变化记录成可追溯、可回放的数据
-- **文档版本**：如何把知识状态组织成有历史的资产
-- **治理机制**：如何让这些记录在长期积累后仍然可信、可检索、可迁移
+当系统里开始出现能够连续执行任务的 Agent，新的核心问题会迅速浮上来：
+
+- Agent 如何在无人值守时维持连续状态，而不是每次都从零开始
+- 出错以后如何回放、恢复，而不是只能粗暴重跑
+- 人类如何不盯着全量日志，也能快速判断现在该不该介入
+- 一旦必须人工接管，系统能否给出足够清晰的责任链和上下文
+
+因此，这个模块不再只讨论“变化如何被记录”，而是进一步讨论：**变化如何支撑自主运行，如何服务人工监控，如何在自动与人工之间建立低摩擦接力。**
 
 ---
 
 ## 二、这个模块解决什么问题
 
-### 2.1 覆写很方便，但会抹平历史
+### 2.1 没有连续记录，Agent 只是一次性执行器
 
-很多系统默认只保留最新值。短期看起来整洁，长期却会带来一系列问题：
+很多 Agent 看起来能做事，但一旦任务跨天、跨版本、跨上下文，就会暴露根本问题：上一轮发生过什么，下一轮几乎不可靠地继承。没有事件流、检查点、版本和时间模型，Agent 很难真正形成长期自主运行能力。
 
-- 不知道某条结论是什么时候改掉的
-- 不知道某份文档为什么从正确变成错误
-- 不知道坏结果来自一次误改，还是一串持续退化的小改动
-- 不知道应该回滚到哪个时间点才安全
+### 2.2 没有监控面，人类只能在事故后追日志
 
-### 2.2 没有变化记录，就没有可靠的责任链
+自动化越强，越不能要求人类实时盯执行细节。真正需要的是一组成本足够低的监控面：摘要、时间线、异常信号、告警阈值、接管入口。否则，人类不是被排除在系统之外，而是被迫在事故之后面对一堆难以阅读的原始痕迹。
 
-知识系统真正稀缺的，不是“有内容”，而是“这份内容能不能被信任”。
+### 2.3 没有接管链路，自动化只是在延后人工成本
 
-信任需要回答：
-
-- 谁写入了它
-- 写入依据是什么
-- 哪次更新引入了分歧
-- 哪些下游索引、缓存、摘要已经消费了这次变化
-- 如果要撤销，影响范围有多大
-
-### 2.3 没有时间维度，知识就只是静态快照
-
-制度会变，口径会变，人的观点也会变。数据技术不能只保存“内容”，还要保存**内容的演化轨迹**。日志、版本、索引、治理，本质上都在服务这件事。
+很多系统把“人工介入”设计成最后兜底，但没有提前准备好接管所需的数据。结果就是：自动化跑了很久，人类接手时仍然需要重新理解背景、重新拼接因果、重新判断影响范围。这样的自动化只是把认知成本推迟，没有真正降低。
 
 ---
 
 ## 三、模块定位
 
-这个模块放在 `data_tech` 下，而不是放进 `agent_workflow/logging`，原因很直接：
+这个模块仍然放在 `data_tech` 下，而不是并入 `agent_workflow/logging`，因为这里讨论的是**支撑自动系统与人工监控的底层数据基础设施**，不是某个具体工作流里的日志写法。
 
-- `agent_workflow/logging` 关注的是工作流里的 **Human Log / Agent Log** 设计
-- 这里关注的是面向知识库、文档库、日志库、个人数据系统的**通用数据基础设施**
+它与现有模块的分工是：
 
-换句话说，这里不讨论“任务日志应该怎么写”，而讨论：
+- [../sql/introduction.md](../sql/introduction.md)：负责结构化事实如何建模与查询。
+- [../rag/introduction.md](../rag/introduction.md)：负责非结构化内容如何被召回与利用。
+- [../sql_and_rag.md](../sql_and_rag.md)：负责结构化检索与语义检索的协作边界。
+- [../../agent_workflow/logging/introduction.md](../../agent_workflow/logging/introduction.md)：负责 Human Log / Agent Log 在工作流中的受众区分与具体协议。
+- 本模块：负责让这些日志、文档、状态、版本、检查点、监控面形成一套可长期运行的数据骨架。
 
-- 状态怎么演化
-- 演化怎么存储
-- 变化怎么被索引和召回
-- 历史怎么服务今天的查询、检索和判断
-
-它与现有模块形成分工：
-
-- [../sql/introduction.md](../sql/introduction.md)：负责结构化事实如何被建模与查询
-- [../rag/introduction.md](../rag/introduction.md)：负责非结构化内容如何被语义召回
-- [../sql_and_rag.md](../sql_and_rag.md)：负责两者的边界与协作
-- 本模块：负责事实与内容如何在时间中留下可靠轨迹
+一句话概括：`agent_workflow/logging` 讨论“日志应该怎样被消费”，本模块讨论“什么样的数据基础设施，才能让这些消费在长期自动化中成立”。
 
 ---
 
@@ -74,45 +61,68 @@
 
 | 文件 | 内容简介 |
 |------|---------|
-| [log_systems_engineering.md](./log_systems_engineering.md) | 日志系统工程：事件、顺序、回放、归档与同步 |
-| [document_versioning_and_diff.md](./document_versioning_and_diff.md) | 文档版本与差异：快照、增量、结构化 diff 与语义 diff |
-| [metadata_and_indexing.md](./metadata_and_indexing.md) | 元数据与索引：如何让日志和文档在长期积累后仍然可找、可过滤、可组合 |
-| [data_quality_and_governance.md](./data_quality_and_governance.md) | 数据质量与治理：可信度、口径稳定性、审计与反腐烂机制 |
-| [temporal_data_modeling.md](./temporal_data_modeling.md) | 时间数据建模：发生时间、记录时间、生效时间与历史关系 |
-| [retrieval_and_resurfacing.md](./retrieval_and_resurfacing.md) | 检索与再唤醒：如何让旧记录在正确时机重新出现 |
-| [privacy_and_portability.md](./privacy_and_portability.md) | 隐私与可移植性：本地优先、导出迁移与长期可读性 |
+| [log_systems_engineering.md](./log_systems_engineering.md) | 日志系统工程：事件、顺序、回放、归档与同步，是自主系统的底层时间骨架 |
+| [document_versioning_and_diff.md](./document_versioning_and_diff.md) | 文档版本与差异：让知识资产、规则资产和系统配置拥有可解释历史 |
+| [metadata_and_indexing.md](./metadata_and_indexing.md) | 元数据与索引：让日志、状态和文档在长期积累后仍可快速定位 |
+| [temporal_data_modeling.md](./temporal_data_modeling.md) | 时间数据建模：区分发生时间、记录时间、生效时间，为回放与审计提供基础 |
+| [retrieval_and_resurfacing.md](./retrieval_and_resurfacing.md) | 检索与再唤醒：让旧记录在 Agent 与人类都需要它时重新浮现 |
+| [data_quality_and_governance.md](./data_quality_and_governance.md) | 数据质量与治理：保证长期自动运行后，记录仍然可信、可判断、可修复 |
+| [privacy_and_portability.md](./privacy_and_portability.md) | 隐私与可移植性：保证自动系统的历史、记忆和审计链不被平台锁死 |
+| [agent_autonomy/](./agent_autonomy/introduction.md) | 子模块「Agent Autonomy」：连续运行、状态继承、检查点、回放与恢复 |
+| [human_monitoring/](./human_monitoring/introduction.md) | 子模块「Human Monitoring」：监控面、告警、人工接管与审计 |
 
 ---
 
-## 五、阅读路线
+## 五、三层阅读主线
 
-如果你的目标是理解“为什么知识基础设施必须管理变化”，建议按这个顺序阅读：
+### 5.1 底层骨架：让系统先有可记录历史
+
+先读这些文件：
 
 1. [log_systems_engineering.md](./log_systems_engineering.md)
-2. [document_versioning_and_diff.md](./document_versioning_and_diff.md)
-3. [temporal_data_modeling.md](./temporal_data_modeling.md)
+2. [temporal_data_modeling.md](./temporal_data_modeling.md)
+3. [document_versioning_and_diff.md](./document_versioning_and_diff.md)
 4. [metadata_and_indexing.md](./metadata_and_indexing.md)
-5. [retrieval_and_resurfacing.md](./retrieval_and_resurfacing.md)
-6. [data_quality_and_governance.md](./data_quality_and_governance.md)
-7. [privacy_and_portability.md](./privacy_and_portability.md)
 
-如果你的目标是做一个个人知识库或日志系统，可以按工程顺序来读：
+这一层解决的是：事件怎么留痕，状态怎么表达，历史怎么保留，未来怎么还能找回来。
 
-1. 先决定时间模型和版本模型
-2. 再决定元数据和索引策略
-3. 最后补齐治理、隐私和迁移能力
+### 5.2 自主运行：让 Agent 不只是单次执行
+
+再读这些文件：
+
+1. [agent_autonomy/introduction.md](./agent_autonomy/introduction.md)
+2. [agent_autonomy/autonomous_agent_continuity.md](./agent_autonomy/autonomous_agent_continuity.md)
+3. [agent_autonomy/replay_checkpoint_and_recovery.md](./agent_autonomy/replay_checkpoint_and_recovery.md)
+4. [retrieval_and_resurfacing.md](./retrieval_and_resurfacing.md)
+
+这一层解决的是：Agent 怎么长期运行，怎么恢复，怎么继承上一次的有效状态。
+
+### 5.3 人工监控：让人类能低成本盯盘和接管
+
+最后读这些文件：
+
+1. [human_monitoring/introduction.md](./human_monitoring/introduction.md)
+2. [human_monitoring/monitoring_surfaces_and_alerts.md](./human_monitoring/monitoring_surfaces_and_alerts.md)
+3. [human_monitoring/human_takeover_and_audit.md](./human_monitoring/human_takeover_and_audit.md)
+4. [data_quality_and_governance.md](./data_quality_and_governance.md)
+5. [privacy_and_portability.md](./privacy_and_portability.md)
+
+这一层解决的是：人类怎么看系统，怎么发现偏航，怎么在必要时平滑接手，并在事后仍然说得清责任链。
 
 ---
 
 ## 六、一个核心判断
 
-很多团队一开始会优先做搜索框、问答入口、向量检索和可视化面板。这些都重要，但它们主要在优化“如何使用知识”。
+过去，日志与文档主要服务于“事后解释”。
 
-日志系统、版本系统、治理系统优化的是更底层的事情：**让知识本身值得被信任。**
+现在，它们还必须服务于两件更难的事：
 
-没有历史，知识只是当前文本。
+- **事中支撑自动运行**
+- **事中支撑人工判断**
 
-有了历史，知识才开始成为基础设施。
+如果一个系统只能在出事后留下痕迹，那它只有归档价值。
+
+如果它能在运行时支撑 Agent 连续执行、支撑人类快速监控、支撑自动与人工顺畅交接，它才配叫基础设施。
 
 ---
 

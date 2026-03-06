@@ -10,6 +10,16 @@ This document defines the high-level repository layout and placement rules for n
 - LICENSE: License.
 - .agents/skills/: Agent 可调用的技能目录。
   - basic-knowledge-writing/SKILL.md: BasicKnowledge 写作技能——模块结构、命名规范、写作风格、语言约定与创建流程。
+  - parallel-subagent-writing/SKILL.md: 并行子 Agent 写作技能——基于 `.agent_cache` 的 sandbox 写作、任务契约文件、产物校验、promotion bundle 与主 Agent 收敛提升。
+    - references/structure.md: sandbox 边界模型——任务级缓存区与 agent 级工作区的最小结构。
+    - references/workflow.md: 协作流程——主 Agent 维护任务契约、subagent 在共享上下文下创作、主 Agent 校验并收敛提升。
+    - references/checklist.md: 验收清单——任务前、任务中、任务后的检查项，包括契约完整性与 promotion bundle。
+    - references/scripts.md: 脚本说明——各脚本的输入输出、JSON 模式、校验模式与最小串联流程。
+    - scripts/scaffold_task_workspace.sh: 创建任务缓存区、各 subagent 工作区与 `brief.md`、`outline.md`、`deliverables.json`。
+    - scripts/resolve_workspace_path.sh: 解析并输出某个 agent 工作区的绝对路径，支持 JSON/quiet 输出。
+    - scripts/list_task_artifacts.sh: 列出任务区或 agent 工作区内的产物文件，支持 JSON 输出与 deliverables 校验。
+    - scripts/prepare_promotion_bundle.sh: 按 deliverables 收拢候选文件，生成 promotion bundle 与 manifest。
+    - scripts/cleanup_task_workspace.sh: 将任务缓存区归档到 `.agent_cache/_trash/`，支持 JSON/quiet 输出。
 - BasicKnowledge/: Foundational notes and references.
   - agent_system/: "Agent System" 系列文章，研究多智能体协作、博弈与能力演进。
     - introduction.md: 引言，多智能体系统的定义、价值与学习路径。
@@ -31,8 +41,8 @@ This document defines the high-level repository layout and placement rules for n
   - data_tech/: "数据技术" 系列文章，讨论记录、检索、查询与数据智能的基础观念。
     - introduction.md: 数据科学概论——记录人类存在轨迹的挑战、工具现状与未来方向。
     - sql_and_rag.md: SQL 与 RAG——精确检索与语义检索的边界、协作与权衡。
-    - logging_and_docs/: 子模块「日志与文档」，聚焦变化记录、文档版本、时间建模、索引治理与数据主权。
-      - introduction.md: 引言，解释为什么知识基础设施必须管理时间维度与历史。
+    - logging_and_docs/: 子模块「日志与文档」，聚焦支撑 Agent 自主运行与人工快速监控的数据基础设施。
+      - introduction.md: 引言，说明日志与文档如何同时支撑 Agent 自主运行与人工快速监控。
       - log_systems_engineering.md: 日志系统工程——事件、顺序、回放、归档与同步的基础设计。
       - document_versioning_and_diff.md: 文档版本与差异——快照、增量、结构化 diff 与语义 diff 的边界。
       - metadata_and_indexing.md: 元数据与索引——让日志和文档在长期积累后仍然可找、可过滤、可组合。
@@ -40,6 +50,14 @@ This document defines the high-level repository layout and placement rules for n
       - temporal_data_modeling.md: 时间数据建模——发生时间、记录时间、生效时间与历史关系。
       - retrieval_and_resurfacing.md: 检索与再唤醒——让旧记录在正确时机重新出现。
       - privacy_and_portability.md: 隐私与可移植性——本地优先、导出迁移与长期可读性保证。
+      - agent_autonomy/: 子模块「Agent Autonomy」，聚焦连续运行、状态继承、检查点、回放与恢复。
+        - introduction.md: 入口——说明为什么要把 Agent 自主运行单独拆成运行时子模块。
+        - autonomous_agent_continuity.md: Agent 自主运行连续性——状态继承、检查点、工作记忆与长期运行的最小骨架。
+        - replay_checkpoint_and_recovery.md: 回放、检查点与恢复——失败后如何精确续跑，而不是整条链路重来。
+      - human_monitoring/: 子模块「Human Monitoring」，聚焦监控面、告警、人工接管与审计。
+        - introduction.md: 入口——说明为什么人工监控不是附属面板，而是独立的一层判断基础设施。
+        - monitoring_surfaces_and_alerts.md: 监控面与告警——人类该看什么、哪些异常值得介入、怎样降低盯盘成本。
+        - human_takeover_and_audit.md: 人工接管与审计——如何让人类快速接手系统，并在事后还原责任链。
     - rag/: 子模块「RAG」，聚焦向量检索、检索增强生成与个人知识库应用。
       - introduction.md: 引言，解释 RAG 的核心流程、检索质量问题与基础设施选型。
     - sql/: 子模块「SQL」，把关系型思维扩展为查询、建模、分析与 AI 场景的完整学习路径。
@@ -154,6 +172,28 @@ This document defines the high-level repository layout and placement rules for n
   - meta_code/: "Meta Code" 系列文章，探讨 LLM 时代的编程范式转变。
     - introduction.md: 引言，旧世界的终结与 Meta Code 的定义。
     - meta_and_auto.md: 章节「Meta 与 Auto」，探讨两种力量的关系与 Meta 债。
+    - human_to_meta/: 子模块「从人类工作到 Meta-work」，补上观察、提问、手工破局、抽象与自动化之间的桥梁层。
+      - introduction.md: 入口——解释为什么自动化不是起点，抽象才是起点，并给出阅读顺序。
+      - observation_and_question.md: 从观察到提问——人类如何看见摩擦、重复、异常，并把抱怨压缩成真正问题。
+      - thinking_and_manual_breakthrough.md: 思考与手工破局——如何组织信息、建立假设、用手工或一次性脚本验证方向。
+      - abstraction_to_meta_and_auto.md: 从抽象到 Meta 与 Auto——如何把成功经验沉淀为规则、接口、流程与检查点，并交给自动执行。
+    - auto/: 子模块「Auto」，聚焦 2026 年自动化工作的两大支柱：Prompts System/Meta-Prompts 与 Workflow 状态机/并行规模化。
+      - introduction.md: 引言，六年演化史与两大支柱索引。
+      - prompts_system/: 子模块「Prompts System」，从 GPT 时代演化到 meta-prompt 工程体系。
+        - introduction.md: Prompts System 演化史——从填词游戏到可工程化的提示基础设施。
+        - meta_prompts.md: Meta-Prompts——让 prompt 自动生成 prompt，APE 方法与动态生成实践。
+      - workflow/: 子模块「Workflow」，从 IFTTT 触发器到 LLM agent 状态机与并行流水线。
+        - introduction.md: Workflow 演化史——从 Zapier 到 LLM 状态机的必然路径。
+        - state_machine.md: Workflow 状态机——显式状态、转移守卫、fork-join 与两个完整例子。
+        - parallel_scaling.md: 并行规模化——Fan-out、Map-Reduce、Work-Process-Tree 与流式流水线。
+      - node_contract.md: 节点契约——输入输出、权限边界、状态记录与人工接管点。
+      - work_process_tree.md: 工作过程树——如何用 LLM 驱动节点实现并行化与规模化自动工作。
+      - knowledge_writing.md: 知识库模块化写作实践——从主题拆分到入口回填的自动化闭环。
+      - context_engineering/: 子模块「Context Engineering」，聚焦面向 agent 的上下文设计、工作记忆蒸馏与运行时治理。
+        - introduction.md: 引言，解释为什么上下文不是 prompt 附属品，而是自动化系统的独立基础设施。
+        - context_design.md: 上下文设计——让 agent 读什么、如何按路由/执行/校验三种模式读取。
+        - distillation.md: 蒸馏机制——如何把工作记忆去冗余、提炼核心并升级为可复用 skill。
+        - runtime_governance.md: 运行时治理——清理、归档、日志、规划、沙箱、权限如何共同控制上下文质量。
     - math_and_meta/: 子模块「数学与 Meta」，把代数、分析、组合、几何视角转译为可执行的 Meta 工程方法。
       - introduction.md: 入口——说明模块定位、问题背景、内容索引与阅读路径。
       - algebra_and_logic.md: 代数与逻辑——公理化建模、可证明性边界与类型化契约。
@@ -200,6 +240,15 @@ This document defines the high-level repository layout and placement rules for n
       - training_and_practice.md: 梯度裁剪、dropout、padding、teacher forcing、exposure bias 等训练实践。
     - optimization.md: 梯度下降家族、自适应优化器、学习率调度与正则化技术全景。
 - ExamplesStudio/: Small, focused examples and experiments.
+  - NewCenturySciFi/: 新世纪科幻世界观写作实验模块，聚焦 Agent 文明、生命、进化、智能、意识、高维感知与多元时空。
+    - introduction.md: 模块入口，说明主题聚合原因、内容索引与推荐阅读顺序。
+    - setting_premise.md: 世界底层前提，统一宇宙、生命、主体与时空规则。
+    - agent_civilization.md: Agent 从工具进化为文明主体后的组织形态、冲突与治理。
+    - life_and_evolution.md: 高维生命的诞生、代谢、繁殖、变异与进化逻辑。
+    - intelligence_and_consciousness.md: 智能与意识的连续谱、群体意识与意识相变。
+    - higher_dimensional_perception.md: 高维生命的视觉与感知机制，以及其对战争、建筑、司法的影响。
+    - multiversal_spacetime.md: 多元时空的结构模型、穿行代价、走廊主权与历史写法。
+    - story_seeds.md: 可继续扩展为小说或设定集的故事原核。
 - MyThought/: Personal essays and reflections.
 - Problems/: Problem statements and notes.
 - docs/architecture/: Architecture documentation.

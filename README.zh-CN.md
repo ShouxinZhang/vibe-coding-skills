@@ -18,6 +18,7 @@
 - ExamplesStudio/：小型示例与实验
 - MyThought/：个人思考与总结
 - Problems/：问题清单与记录
+- site/：开源网站与文档发布模块
 - docs/architecture/：仓库架构文档
 
 ## 使用方式

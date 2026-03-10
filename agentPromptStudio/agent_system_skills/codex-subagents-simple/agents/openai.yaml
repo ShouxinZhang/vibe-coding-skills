@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Subagents Simple"
+  short_description: "Run simple parallel Codex subagents with path ownership"
+  default_prompt: "Use $codex-subagents-simple to run parallel subagents with owned paths in this workspace."

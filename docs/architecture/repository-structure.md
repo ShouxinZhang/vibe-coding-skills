@@ -8,6 +8,8 @@ This document defines the high-level repository layout and placement rules for n
 - README.md: Repository overview and core value statements.
 - README.zh-CN.md: Chinese repository overview and core value statements.
 - LICENSE: License.
+- .github/workflows/: Automation workflows.
+  - deploy-site.yml: Build and deploy the `site/` VitePress module to GitHub Pages.
 - .agents/skills/: Agent 可调用的技能目录。
   - basic-knowledge-writing/SKILL.md: BasicKnowledge 写作技能——模块结构、命名规范、写作风格、语言约定与创建流程。
   - parallel-subagent-writing/SKILL.md: 并行子 Agent 写作技能——基于 `.agent_cache` 的 sandbox 写作、任务契约文件、产物校验、promotion bundle 与主 Agent 收敛提升。
@@ -20,6 +22,19 @@ This document defines the high-level repository layout and placement rules for n
     - scripts/list_task_artifacts.sh: 列出任务区或 agent 工作区内的产物文件，支持 JSON 输出与 deliverables 校验。
     - scripts/prepare_promotion_bundle.sh: 按 deliverables 收拢候选文件，生成 promotion bundle 与 manifest。
     - scripts/cleanup_task_workspace.sh: 将任务缓存区归档到 `.agent_cache/_trash/`，支持 JSON/quiet 输出。
+- site/: 开源网站与文档发布模块，负责仓库对外展示与静态站点发布。
+  - package.json: 站点依赖与本地开发、构建脚本。
+  - index.md: 黑色主题首页，聚焦项目价值、模块入口与阅读路径。
+  - guide/: 站点导览文档。
+    - getting-started.md: 快速开始，定义访客阅读顺序与关键入口。
+    - modules.md: 模块地图，从业务视角解释仓库结构。
+    - examples.md: 案例入口，说明哪些内容适合对外展示。
+    - deploy.md: 免费部署说明，解释 GitHub Pages 发布方式。
+  - .vitepress/: VitePress 配置、主题样式与公共静态资源。
+    - config.mts: 站点导航、基础路径与主题配置。
+    - theme/index.ts: 主题入口，扩展默认主题并加载自定义样式。
+    - theme/custom.css: 黑色视觉主题与首页布局样式。
+    - public/logo.svg: 站点品牌图标。
 - BasicKnowledge/: Foundational notes and references.
   - agent_system/: "Agent System" 系列文章，研究多智能体协作、博弈与能力演进。
     - introduction.md: 引言，多智能体系统的定义、价值与学习路径。
@@ -240,15 +255,27 @@ This document defines the high-level repository layout and placement rules for n
       - training_and_practice.md: 梯度裁剪、dropout、padding、teacher forcing、exposure bias 等训练实践。
     - optimization.md: 梯度下降家族、自适应优化器、学习率调度与正则化技术全景。
 - ExamplesStudio/: Small, focused examples and experiments.
-  - NewCenturySciFi/: 新世纪科幻世界观写作实验模块，聚焦 Agent 文明、生命、进化、智能、意识、高维感知与多元时空。
-    - introduction.md: 模块入口，说明主题聚合原因、内容索引与推荐阅读顺序。
-    - setting_premise.md: 世界底层前提，统一宇宙、生命、主体与时空规则。
-    - agent_civilization.md: Agent 从工具进化为文明主体后的组织形态、冲突与治理。
-    - life_and_evolution.md: 高维生命的诞生、代谢、繁殖、变异与进化逻辑。
-    - intelligence_and_consciousness.md: 智能与意识的连续谱、群体意识与意识相变。
-    - higher_dimensional_perception.md: 高维生命的视觉与感知机制，以及其对战争、建筑、司法的影响。
-    - multiversal_spacetime.md: 多元时空的结构模型、穿行代价、走廊主权与历史写法。
-    - story_seeds.md: 可继续扩展为小说或设定集的故事原核。
+  - NewCenturySciFi/: 新世纪科幻写作实验模块，按“科学前沿 -> 世界机制 -> 故事引擎”三层组织，服务 agent 持续扩写。
+    - introduction.md: 根入口，说明模块重构目标、三层结构与推荐阅读顺序。
+    - setting_premise.md: 全模块共用的前提合同，统一假设边界、代价意识与讨论协议。
+    - scientific_foundations/: 科学前沿层，整理最适合进入新世纪科幻写作的学科母题。
+      - introduction.md: 入口，说明科学前沿层为什么要独立存在，以及如何作为创作底座使用。
+      - math_frontiers.md: 代数学、拓扑学、分析学、概率与优化如何转译为世界机制。
+      - ai_frontiers.md: RL、LLM、多智能体与对齐问题如何改写主体、协作与治理。
+      - physics_and_chemistry.md: 物理边界与化学机制如何约束能量、材料、观测与工业生态。
+      - biology_and_evolution.md: 生物学、进化与生态如何为陌生生命和长期适应提供模板。
+    - civilization_and_subjects/: 主体与文明层，讨论资格、生命、意识与 Agent 文明。
+      - introduction.md: 入口，说明能力变化如何转化为主体资格与制度问题。
+      - agent_civilization.md: Agent 从工具系统进入文明、协议、资源与内战问题。
+      - life_and_evolution.md: 生命定义、复制、死亡与进化压力如何扩展到新载体。
+      - intelligence_and_consciousness.md: 智能、可报告性、自我模型与意识的区分及制度后果。
+    - spacetime_and_perception/: 时空与感知层，处理高维感知和多元时空的观测边界与制度后果。
+      - introduction.md: 入口，说明陌生感如何由观测限制、同步困难和代价来支撑。
+      - higher_dimensional_perception.md: 高维感知如何被写成表示、投影、反演与观测边界问题。
+      - multiversal_spacetime.md: 多元时空如何被写成分支、走廊、同步与主权问题。
+    - story_engine/: 故事引擎层，把科学前提和世界机制压缩为可扩写叙事冲突。
+      - introduction.md: 入口，说明故事引擎层如何把前提和机制转成创作接口。
+      - story_seeds.md: 一组从严格前提出发、可继续扩写的故事原核。
 - MyThought/: Personal essays and reflections.
 - Problems/: Problem statements and notes.
 - docs/architecture/: Architecture documentation.

@@ -31,3 +31,7 @@ Thumbs.db
 # Misc
 *.tsbuildinfo
 .agent_cache/
+site/.vitepress/cache/
+site/.vitepress/.temp/
+site/.vitepress/dist/
+.backup/site/

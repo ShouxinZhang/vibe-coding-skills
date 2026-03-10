@@ -1,0 +1,19 @@
+{
+  "name": "codex-subagents-simple",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "subagents": "tsx scripts/run_subagents.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.111.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "25.3.5",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  }
+}

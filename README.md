@@ -25,6 +25,7 @@ We provide a repeatable way of working that turns ideas into deliverables quickl
 - ExamplesStudio/: small, focused examples and experiments
 - MyThought/: personal reflections and summaries
 - Problems/: problem lists and notes
+- site/: open-source website and documentation publishing module
 - docs/architecture/: repository architecture documentation
 
 ## How to Use

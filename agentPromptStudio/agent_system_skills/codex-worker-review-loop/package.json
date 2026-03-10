@@ -1,0 +1,19 @@
+{
+  "name": "codex-worker-review-loop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "loop": "tsx scripts/run_loop.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.111.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "25.3.5",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  }
+}

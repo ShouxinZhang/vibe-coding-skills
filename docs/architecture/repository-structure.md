@@ -25,6 +25,7 @@ This document defines the high-level repository layout and placement rules for n
 - site/: 开源网站与文档发布模块，负责仓库对外展示与静态站点发布。
   - package.json: 站点依赖与本地开发、构建脚本。
   - index.md: 黑色主题首页，聚焦项目价值、模块入口与阅读路径。
+  - public/logo.svg: 站点品牌图标，作为首页 hero 与导航图标静态资源。
   - guide/: 站点导览文档。
     - getting-started.md: 快速开始，定义访客阅读顺序与关键入口。
     - modules.md: 模块地图，从业务视角解释仓库结构。
@@ -34,7 +35,6 @@ This document defines the high-level repository layout and placement rules for n
     - config.mts: 站点导航、基础路径与主题配置。
     - theme/index.ts: 主题入口，扩展默认主题并加载自定义样式。
     - theme/custom.css: 黑色视觉主题与首页布局样式。
-    - public/logo.svg: 站点品牌图标。
 - BasicKnowledge/: Foundational notes and references.
   - agent_system/: "Agent System" 系列文章，研究多智能体协作、博弈与能力演进。
     - introduction.md: 引言，多智能体系统的定义、价值与学习路径。

@@ -12,6 +12,9 @@ This document defines the high-level repository layout and placement rules for n
   - deploy-site.yml: Build and deploy the `site/` VitePress module to GitHub Pages.
 - .agents/skills/: Agent 可调用的技能目录。
   - basic-knowledge-writing/SKILL.md: BasicKnowledge 写作技能——模块结构、命名规范、写作风格、语言约定与创建流程。
+  - github-ssh-auth/SKILL.md: GitHub SSH 推送配置技能——生成或复用 SSH key、切换 remote 为 SSH、验证并落地可复用 push 能力。
+    - references/commands.md: 标准命令顺序，覆盖盘点、生成 key、切 remote 与验证。
+    - references/troubleshooting.md: 常见失败排查，覆盖 publickey、remote 协议与复用边界。
   - parallel-subagent-writing/SKILL.md: 并行子 Agent 写作技能——基于 `.agent_cache` 的 sandbox 写作、任务契约文件、产物校验、promotion bundle 与主 Agent 收敛提升。
     - references/structure.md: sandbox 边界模型——任务级缓存区与 agent 级工作区的最小结构。
     - references/workflow.md: 协作流程——主 Agent 维护任务契约、subagent 在共享上下文下创作、主 Agent 校验并收敛提升。

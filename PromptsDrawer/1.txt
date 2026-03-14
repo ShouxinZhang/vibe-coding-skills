@@ -6,3 +6,7 @@
 拆分为文件夹，写多个子md, 然后写的通俗一点
 
 有时候我们发现和coding agent chat, 我们已经知道后续需要发送什么上下文了，但是当前agent的flow仍然处于一个中断状态。对，其实是说，我们能否编写一个meta-agent, 对agent的上下文和工作进行管理, 就是，我们告诉meta-agent, 我们的目的和需求是什么，然后meta-agent就会根据这个目的和需求，来管理和调度不同的agent，来完成我们的任务。以刚刚卡住的coding agent为例，我们可以告诉meta-agent，我们需要完成一个编程任务，并且我们已经知道后续需要发送什么上下文了，那么meta-agent就会根据这个信息，持续观察coding agent的状态，并且在coding agent的上一条workflow完成后, 就会自动发送我们预先准备好的上下文给coding agent, 来帮助coding agent继续完成任务。这样的话，我们就不需要在coding agent的每一步都进行人工干预了，meta-agent会自动帮我们管理和调度不同的agent来完成我们的任务。
+
+模块化代码的SQLite, 日志记录，自动门禁，workflow, 
+
+关于模块化规则以及记录，嗯，其实，我觉得也需要做一个想法，比如说依赖关系如何储存

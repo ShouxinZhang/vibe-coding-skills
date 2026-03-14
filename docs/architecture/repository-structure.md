@@ -212,6 +212,18 @@ This document defines the high-level repository layout and placement rules for n
         - context_design.md: 上下文设计——让 agent 读什么、如何按路由/执行/校验三种模式读取。
         - distillation.md: 蒸馏机制——如何把工作记忆去冗余、提炼核心并升级为可复用 skill。
         - runtime_governance.md: 运行时治理——清理、归档、日志、规划、沙箱、权限如何共同控制上下文质量。
+    - agentic_programming/: 子模块「Agent Programming」，聚焦把 agent 视为新的可编程变量单元，并讨论其基础结构。
+      - introduction.md: 入口——解释为什么 agent 应被视为新的基本计算单元，以及这一抽象的业务价值与阅读路径。
+      - agent_as_variable.md: Agent 作为变量——说明为什么 agent 更接近带身份与状态的变量，而不是一次性的函数调用。
+      - agentic_data_structures.md: Agentic Data Structures——给出 agent 的最小结构字段与组合结构，说明它们如何支撑治理与复用。
+      - state_context_and_identity.md: 状态、上下文与身份——正式化值、地址、引用与生命周期在 agent 编程中的对应关系。
+      - agentic_type_system.md: Agentic Type System——定义角色、能力、权限与生命周期边界，让 agent 组合在运行前就有契约与兼容性检查。
+      - agentic_runtime.md: Agentic Runtime——定义 agent 在系统中的创建、调度、挂起、恢复、派生与回收机制，让长期运行可治理。
+      - agentic_collections.md: Agentic Collections——把数组、栈、队列、堆、图翻译成 agent 世界的组织结构，说明多个 agent 与任务如何被正式编排。
+      - agentic_control_flow.md: Agentic Control Flow——把 if/for/while/function/exception 翻译成 agent 世界的执行语义，说明条件路由、迭代、调用与异常恢复如何语言化。
+      - agentic_language_design.md: Agentic Language Design——把前面的变量、类型、运行时、集合与控制流收束成一套语言表面设计，说明什么该成为第一类语法对象。
+      - organizational_semantics.md: 组织语义——把并行、通信、层级、抽象、继承放在同一篇里讨论，并用 game/social MVP 说明这些主题如何在最小产品中出现。
+      - boundaries_and_map.md: 边界与大地图——整理本模块的大地图，把并行、通信、层级、抽象、继承以及更多候选主题放回同一版图。
     - math_and_meta/: 子模块「数学与 Meta」，把代数、分析、组合、几何视角转译为可执行的 Meta 工程方法。
       - introduction.md: 入口——说明模块定位、问题背景、内容索引与阅读路径。
       - algebra_and_logic.md: 代数与逻辑——公理化建模、可证明性边界与类型化契约。

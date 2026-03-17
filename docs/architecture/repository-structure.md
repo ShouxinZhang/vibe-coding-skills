@@ -285,6 +285,23 @@ This document defines the high-level repository layout and placement rules for n
       - agent_social_ecology.md: Agent 系统如何改写人类互联网平台、社交关系与经济分层。
       - life_and_evolution.md: 生命定义、复制、死亡与进化压力如何扩展到新载体。
       - intelligence_and_consciousness.md: 智能、可报告性、自我模型与意识的区分及制度后果。
+      - temp/: 临时研究工作区，用于沉淀主文前的原始想法、批注与路线拆分。
+        - temp.md: 原始研究草稿，记录 OpenClaw、内容平台、关系平台与分布式社交的第一轮设想。
+        - chatgpt.md: 中间判断稿，收敛“关系平台 agent 化”“通信历史主权”等关键修正。
+        - Claude_debug.md: 结构化批注，指出论证跳跃、前提后置与支线跑偏的问题。
+        - research_roadmap_before_split.md: 单文件旧版路线图备份，用于回看目录化之前的集中版本。
+        - research_roadmap/: 目录化路线图工作区，同时提供 DFS 深挖主线和 BFS 口语化问题池。
+          - README.md: 根入口，说明为什么要从单文件改成目录，以及 DFS / BFS 的分工方式。
+          - BFS.md: 口语化问题池，把概念、小命题和可直接开聊的话头铺开。
+          - DFS/: 深挖主线，按逻辑顺序拆分主题，方便逐块扩写。
+            - introduction.md: DFS 入口，说明七个深挖方向与推荐阅读顺序。
+            - 01_scope_and_boundaries/notes.md: 边界与变量——先拆清内容平台、关系平台、主权与治理层级。
+            - 02_content_platform_shift/notes.md: 内容平台为什么先变——聚焦工作流化、职能重排与平台价值迁移。
+            - 03_relation_platform_protocol/notes.md: 关系平台为什么更像协议层——聚焦身份入口、权限系统与 root account 演化。
+            - 04_agent_social_interface/notes.md: agent 的社交接口——讨论人如何从单点账号升级成多层代理组织。
+            - 05_communication_history_sovereignty/notes.md: 通信历史主权——比普通数据主权更具体地讨论聊天记录、上下文与迁移权。
+            - 06_stratification_and_governance/notes.md: 分层、配置权与治理边界——解释差距机制及中国语境下的监管约束。
+            - 07_high_assumption_extensions/notes.md: 高假设支线——收纳具身化、意识跳跃、元宇宙等不应混入主线的远景设想。
     - spacetime_and_perception/: 时空与感知层，处理高维感知和多元时空的观测边界与制度后果。
       - introduction.md: 入口，说明陌生感如何由观测限制、同步困难和代价来支撑。
       - higher_dimensional_perception.md: 高维感知如何被写成表示、投影、反演与观测边界问题。

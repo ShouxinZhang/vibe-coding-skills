@@ -295,7 +295,9 @@ This document defines the high-level repository layout and placement rules for n
           - BFS.md: 口语化问题池，把概念、小命题和可直接开聊的话头铺开。
           - DFS/: 深挖主线，按逻辑顺序拆分主题，方便逐块扩写。
             - introduction.md: DFS 入口，说明七个深挖方向与推荐阅读顺序。
+            - memory.md: DFS 前情提要，用人话补回旧草稿到目录化拆分之间的上下文。
             - 01_scope_and_boundaries/notes.md: 边界与变量——先拆清内容平台、关系平台、主权与治理层级。
+            - 01_scope_and_boundaries/terms_and_layers.md: 术语与层级对照——固定内容平台、关系平台、主权、agent 角色与治理层的共用坐标。
             - 02_content_platform_shift/notes.md: 内容平台为什么先变——聚焦工作流化、职能重排与平台价值迁移。
             - 03_relation_platform_protocol/notes.md: 关系平台为什么更像协议层——聚焦身份入口、权限系统与 root account 演化。
             - 04_agent_social_interface/notes.md: agent 的社交接口——讨论人如何从单点账号升级成多层代理组织。

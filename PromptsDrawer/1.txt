@@ -13,3 +13,9 @@
 
 抱歉，能否用更加通俗易懂的人话解释一下workflow呢
 就是，比如说xxx, 我们看到xxx, 作为人类，那么我们当然会想xxx, 所以xxx ...
+
+read:
+ExamplesStudio/NewCenturySciFi/civilization_and_subjects/temp/temp.md
+ExamplesStudio/NewCenturySciFi/civilization_and_subjects/temp/research_roadmap/DFS/introduction.md
+ExamplesStudio/NewCenturySciFi/civilization_and_subjects/temp/research_roadmap/DFS/01_scope_and_boundaries/notes.md
+then, 

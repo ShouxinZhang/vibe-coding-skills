@@ -282,6 +282,7 @@ This document defines the high-level repository layout and placement rules for n
     - civilization_and_subjects/: 主体与文明层，讨论资格、生命、意识与 Agent 文明。
       - introduction.md: 入口，说明能力变化如何转化为主体资格与制度问题。
       - agent_civilization.md: Agent 从工具系统进入文明、协议、资源与内战问题。
+      - agent_social_ecology.md: Agent 系统如何改写人类互联网平台、社交关系与经济分层。
       - life_and_evolution.md: 生命定义、复制、死亡与进化压力如何扩展到新载体。
       - intelligence_and_consciousness.md: 智能、可报告性、自我模型与意识的区分及制度后果。
     - spacetime_and_perception/: 时空与感知层，处理高维感知和多元时空的观测边界与制度后果。

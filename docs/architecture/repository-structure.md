@@ -172,6 +172,7 @@ This document defines the high-level repository layout and placement rules for n
       - cache_and_short_term.md: 缓存与短期记忆的分工、生命周期与落地原则。
       - long_term_and_rag.md: 长期记忆分层、检索增强链路与误召回治理。
       - mechanical_memory.md: todo/plan/draft 的结构化状态流转与失败恢复。
+      - working_memory_transfer.md: 工作记忆迁移——冷热记忆、跳级检索、预热与跨时间段状态恢复。
       - memory_agents.md: 记录者 Agent 与监控者 Agent 的职责边界与触发机制。
       - personas.md: 审慎型/探索型/执行型人格的记忆驱动策略。
       - collaborative_memory/: 子模块「Collaborative Memory」，聚焦多 Agent 场景下的共享知识库与协同记忆治理。
@@ -312,6 +313,9 @@ This document defines the high-level repository layout and placement rules for n
       - introduction.md: 入口，说明故事引擎层如何把前提和机制转成创作接口。
       - story_seeds.md: 一组从严格前提出发、可继续扩写的故事原核。
 - MyThought/: Personal essays and reflections.
+  - random_walk/: 散步中的随机思考与录音整理。
+    - 1.txt: 原始散步录音转写文本。
+    - 1_qa.md: 基于 `1.txt` 提炼的主持人采访科学家式问答稿。
 - Problems/: Problem statements and notes.
 - docs/architecture/: Architecture documentation.
 

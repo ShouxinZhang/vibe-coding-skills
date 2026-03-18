@@ -27,6 +27,7 @@
 | [cache_and_short_term.md](./cache_and_short_term.md) | 缓存与短期记忆：高频信息复用与任务级状态保持 |
 | [long_term_and_rag.md](./long_term_and_rag.md) | 长期记忆与 RAG：跨任务知识沉淀、检索与注入 |
 | [mechanical_memory.md](./mechanical_memory.md) | 机械记忆：todo、plan、draft 等结构化执行状态 |
+| [working_memory_transfer.md](./working_memory_transfer.md) | 工作记忆迁移：任务暂停、切换与恢复时的预热、跳级检索与状态重建 |
 | [memory_agents.md](./memory_agents.md) | 记忆管理 Agent：记录者与监控者的职责边界 |
 | [personas.md](./personas.md) | 人格系统：基于记忆切片的行为策略与风格控制 |
 | [collaborative_memory/](./collaborative_memory/introduction.md) | 协同记忆：多 Agent 场景下的共享知识库、冲突治理与集体学习 |
@@ -49,7 +50,8 @@
 
 1. 先读 [cache_and_short_term.md](./cache_and_short_term.md)，建立"快读快写"层的性能认知。
 2. 再读 [mechanical_memory.md](./mechanical_memory.md)，理解 todo/plan/draft 如何支撑可恢复执行。
-3. 然后读 [long_term_and_rag.md](./long_term_and_rag.md)，掌握经验沉淀与召回机制。
-4. 接着读 [memory_agents.md](./memory_agents.md)，理解记忆治理如何从人工走向自治。
-5. 再读 [collaborative_memory/](./collaborative_memory/introduction.md)，理解多 Agent 如何共享、同步并共同沉淀记忆。
-6. 最后读 [personas.md](./personas.md)，将记忆能力映射到业务风格与组织分工。
+3. 再读 [working_memory_transfer.md](./working_memory_transfer.md)，理解短期记忆、机械记忆与长期检索之间如何完成跨时间段恢复。
+4. 然后读 [long_term_and_rag.md](./long_term_and_rag.md)，掌握经验沉淀与召回机制。
+5. 接着读 [memory_agents.md](./memory_agents.md)，理解记忆治理如何从人工走向自治。
+6. 再读 [collaborative_memory/](./collaborative_memory/introduction.md)，理解多 Agent 如何共享、同步并共同沉淀记忆。
+7. 最后读 [personas.md](./personas.md)，将记忆能力映射到业务风格与组织分工。

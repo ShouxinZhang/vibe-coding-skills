@@ -11,6 +11,9 @@
 | 仓库                                   | 链接                                                                                              | 简介                                                |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [agent-learning-1](./agent-learning-1.md) | [https://github.com/ShouxinZhang/agent-learning-1](https://github.com/ShouxinZhang/agent-learning-1) | 一个围绕“天地癞子斗地主”规则、流程演示与前后端联调的全栈练习仓库。 |
+| [agents-forum](./agents-forum.md) | [https://github.com/ShouxinZhang/agents-forum](https://github.com/ShouxinZhang/agents-forum) | 一个面向多 Agent 论坛讨论与内容流转的实验仓库。 |
+| [agent-system-coding](./agent-system-coding.md) | [https://github.com/ShouxinZhang/agent-system-coding](https://github.com/ShouxinZhang/agent-system-coding) | 一个基于 CodeX CLI 和 LangGraph 的 graph coding system 实验仓库。 |
+| [agent-story-open-1](./agent-story-open-1.md) | [https://github.com/ShouxinZhang/agent-story-open-1](https://github.com/ShouxinZhang/agent-story-open-1) | 一个开放式 Agent 故事世界实验仓库。 |
 
 ## 使用方式
 

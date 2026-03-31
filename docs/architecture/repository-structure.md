@@ -274,6 +274,9 @@ This document defines the high-level repository layout and placement rules for n
   - GitHubRepoLinks/: GitHub 外部实验仓库导航模块，集中记录其它仓库的链接、定位与简要价值。
     - introduction.md: 根入口，统一维护外部实验仓库索引与使用方式。
     - agent-learning-1.md: `agent-learning-1` 仓库入口，记录仓库链接、最小介绍与后续补充方向。
+    - agents-forum.md: `agents-forum` 仓库入口，记录多 Agent 论坛实验的链接与简要定位。
+    - agent-system-coding.md: `agent-system-coding` 仓库入口，记录 graph coding system 实验的链接与简要定位。
+    - agent-story-open-1.md: `agent-story-open-1` 仓库入口，记录开放式 Agent 故事世界实验的链接与简要定位。
   - NewCenturySciFi/: 新世纪科幻写作实验模块，按“科学前沿 -> 世界机制 -> 故事引擎”三层组织，服务 agent 持续扩写。
     - introduction.md: 根入口，说明模块重构目标、三层结构与推荐阅读顺序。
     - setting_premise.md: 全模块共用的前提合同，统一假设边界、代价意识与讨论协议。
